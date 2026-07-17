@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería — Ciudad Viva</title>
+  <meta name="description" content="Galería fotográfica de los eventos y espacios culturales de Ciudad Viva.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/print.css" rel="stylesheet" media="print">
+  <style>
+    /* Lightbox (modal de imagen) */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: var(--capa-modal);
+      background: rgba(0,0,0,0.9);
+      align-items: center;
+      justify-content: center;
+      padding: var(--espacio-4);
+    }
+    .lightbox.activo { display: flex; }
+    .lightbox__contenido {
+      background: var(--color-oscuro);
+      border-radius: var(--radio-lg);
+      max-width: 700px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      animation: entrarAbajo 0.3s ease;
+    }
+    .lightbox__cerrar {
+      position: absolute;
+      top: var(--espacio-3);
+      right: var(--espacio-3);
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transicion-rapida);
+    }
+    .lightbox__cerrar:hover { background: rgba(255,255,255,0.3); }
+    .lightbox__foto {
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox__caption { padding: var(--espacio-4) var(--espacio-6); color: white; }
+    .lightbox__caption h3 { font-family: var(--fuente-titulo); font-size: var(--tamaño-xl); margin-bottom: var(--espacio-1); }
+    .lightbox__caption p  { color: rgba(255,255,255,0.6); font-size: var(--tamaño-sm); }
+
+    /* Botón de categorías activo */
+    .filtro-btn.activo-cat {
+      background: var(--color-primario) !important;
+      border-color: var(--color-primario) !important;
+      color: white !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav-cv">
+  <div class="nav-cv__inner">
+    <a href="index.html" class="nav-cv__logo"><i class="fa-solid fa-city" style="color:var(--color-secundario)"></i>Ciudad <span>Viva</span></a>
+    <ul class="nav-cv__menu">
+      <li><a href="index.html" class="nav-cv__enlace">Inicio</a></li>
+      <li><a href="agenda.html" class="nav-cv__enlace">Agenda</a></li>
+      <li><a href="lugares.html" class="nav-cv__enlace">Lugares</a></li>
+      <li><a href="galeria.html" class="nav-cv__enlace nav-cv__enlace--activo">Galería</a></li>
+      <li><a href="contacto.html" class="nav-cv__enlace">Contacto</a></li>
+      <li><a href="agenda.html" class="nav-cv__enlace nav-cv__btn">Ver Eventos</a></li>
+    </ul>
+    <button class="nav-cv__toggle" id="btnToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="nav-cv__movil" id="menuMovil">
+  <a href="index.html" class="nav-cv__enlace">Inicio</a>
+  <a href="agenda.html" class="nav-cv__enlace">Agenda</a>
+  <a href="lugares.html" class="nav-cv__enlace">Lugares</a>
+  <a href="galeria.html" class="nav-cv__enlace">Galería</a>
+  <a href="contacto.html" class="nav-cv__enlace">Contacto</a>
+</nav>
+
+<!-- ENCABEZADO -->
+<section class="seccion--oscura" style="padding:var(--espacio-12) 0">
+  <div class="contenedor">
+    <h1 class="titulo-seccion" style="color:white">Galería <span>Fotográfica</span></h1>
+    <p class="subtitulo">Momentos capturados de nuestra vida cultural</p>
+  </div>
+</section>
+
+<!-- FILTROS -->
+<div style="background:white;border-bottom:1px solid var(--color-borde);padding:var(--espacio-4) 0">
+  <div class="contenedor">
+    <div style="display:flex;gap:var(--espacio-2);flex-wrap:wrap">
+      <button class="filtro-btn activo-cat" style="padding:var(--espacio-2) var(--espacio-4);border:2px solid var(--color-borde);border-radius:var(--radio-pill);background:white;cursor:pointer;font-weight:600;font-size:var(--tamaño-sm);color:var(--color-muted);transition:all 0.2s;font-family:var(--fuente-cuerpo)" onclick="filtrarGaleria('todos',this)">Todos</button>
+      <button class="filtro-btn" style="padding:var(--espacio-2) var(--espacio-4);border:2px solid var(--color-borde);border-radius:var(--radio-pill);background:white;cursor:pointer;font-weight:600;font-size:var(--tamaño-sm);color:var(--color-muted);transition:all 0.2s;font-family:var(--fuente-cuerpo)" onclick="filtrarGaleria('teatro',this)"><i class="fa-solid fa-masks-theater"></i> Teatro</button>
+      <button class="filtro-btn" style="padding:var(--espacio-2) var(--espacio-4);border:2px solid var(--color-borde);border-radius:var(--radio-pill);background:white;cursor:pointer;font-weight:600;font-size:var(--tamaño-sm);color:var(--color-muted);transition:all 0.2s;font-family:var(--fuente-cuerpo)" onclick="filtrarGaleria('musica',this)"><i class="fa-solid fa-music"></i> Música</button>
+      <button class="filtro-btn" style="padding:var(--espacio-2) var(--espacio-4);border:2px solid var(--color-borde);border-radius:var(--radio-pill);background:white;cursor:pointer;font-weight:600;font-size:var(--tamaño-sm);color:var(--color-muted);transition:all 0.2s;font-family:var(--fuente-cuerpo)" onclick="filtrarGaleria('exposicion',this)"><i class="fa-solid fa-palette"></i> Arte</button>
+      <button class="filtro-btn" style="padding:var(--espacio-2) var(--espacio-4);border:2px solid var(--color-borde);border-radius:var(--radio-pill);background:white;cursor:pointer;font-weight:600;font-size:var(--tamaño-sm);color:var(--color-muted);transition:all 0.2s;font-family:var(--fuente-cuerpo)" onclick="filtrarGaleria('festival',this)"><i class="fa-solid fa-star"></i> Festivales</button>
+    </div>
+  </div>
+</div>
+
+<!-- GALERÍA MOSAICO CSS GRID -->
+<section class="seccion">
+  <div class="contenedor">
+    <div class="grid-galeria" id="gridGaleria">
+
+      <!-- Item 1: grande -->
+      <div class="galeria-item galeria-item--grande foto-item" data-tipo="teatro" data-titulo="Edipo Rey" data-desc="Compañía Nacional de Teatro · Gran Teatro Municipal · Julio 2026" style="background:linear-gradient(135deg,#2c3e50,#c0392b)" onclick="abrirLightbox('teatro','Edipo Rey','Compañía Nacional de Teatro · Julio 2026','#c0392b')">
+        <div class="galeria-item__fondo" style="height:100%;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-masks-theater" style="font-size:5rem;color:rgba(255,255,255,0.25)"></i>
+        </div>
+        <div class="galeria-item__overlay">
+          <div class="galeria-item__caption"><i class="fa-solid fa-masks-theater"></i> Edipo Rey</div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="galeria-item foto-item" data-tipo="musica" style="background:linear-gradient(135deg,#2c3e50,#8e44ad)" onclick="abrirLightbox('musica','Orquesta Sinfónica','Noche de Gala · Gran Teatro · Julio 2026','#8e44ad')">
+        <div class="galeria-item__fondo" style="height:100%;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-music" style="font-size:3rem;color:rgba(255,255,255,0.25)"></i>
+        </div>
+        <div class="galeria-item__overlay"><div class="galeria-item__caption">Orquesta Sinfónica</div></div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="galeria-item foto-item" data-tipo="festival" style="background:linear-gradient(135deg,#873600,#e67e22)" onclick="abrirLightbox('festival','Festival de Jazz','Plaza Mayor · Sábado 20 Jul','#e67e22')">
+        <div class="galeria-item__fondo" style="height:100%;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-guitar" style="font-size:3rem;color:rgba(255,255,255,0.25)"></i>
+        </div>
+        <div class="galeria-item__overlay"><div class="galeria-item__caption">Festival de Jazz</div></div>
+      </div>
+
+      <!-- Item 4: alto -->
+      <div class="galeria-item galeria-item--alto foto-item" data-tipo="exposicion" style="background:linear-gradient(135deg,#3730a3,#4f46e5)" onclick="abrirLightbox('exposicion','Arte Urbano','Muestra itinerante · Museo Municipal','#4f46e5')">
+        <div class="galeria-item__fondo" style="height:100%;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-palette" style="font-size:4rem;color:rgba(255,255,255,0.25)"></i>
+        </div>
+        <div class="galeria-item__overlay"><div class="galeria-item__caption">Arte Urbano Latinoamericano</div></div>
+      </div>
+
+      <!-- Item 5: ancho -->
+      <div class="galeria-item galeria-item--ancho foto-item" data-tipo="festival" style="background:linear-gradient(135deg,#065f46,#1e8449)" onclick="abrirLightbox('festival','Festival Bicentenario','Parque Cultural Sur · Agosto 2026','#1e8449')">
+        <div class="galeria-item__fondo" style="height:100%;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-star" style="font-size:4rem;color:rgba(255,255,255,0.25)"></i>
+        </div>
+        <div class="galeria-item__overlay"><div class="galeria-item__caption">Festival del Bicentenario 2026</div></div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="galeria-item foto-item" data-tipo="teatro" style="background:linear-gradient(135deg,#7c3aed,#9d174d)" onclick="abrirLightbox('teatro','Ballet Clásico','Teatro Metropolitano · Junio 2026','#7c3aed')">
+        <div class="galeria-item__fondo" style="height:100%;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-shoe-prints" style="font-size:3rem;color:rgba(255,255,255,0.25)"></i>
+        </div>
+        <div class="galeria-item__overlay"><div class="galeria-item__caption">Ballet Clásico</div></div>
+      </div>
+
+      <!-- Item 7 -->
+      <div class="galeria-item foto-item" data-tipo="exposicion" style="background:linear-gradient(135deg,#92400e,#d97706)" onclick="abrirLightbox('exposicion','Cerámica Andina','Museo de Arte Precolombino','#d97706')">
+        <div class="galeria-item__fondo" style="height:100%;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-hands-holding" style="font-size:3rem;color:rgba(255,255,255,0.25)"></i>
+        </div>
+        <div class="galeria-item__overlay"><div class="galeria-item__caption">Cerámica Andina</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX MODAL -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxTitulo" onclick="cerrarLightbox(event)">
+  <div class="lightbox__contenido" onclick="event.stopPropagation()">
+    <button class="lightbox__cerrar" onclick="cerrarLightbox()" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="lightbox__foto" id="lightboxFoto" style="background:linear-gradient(135deg,#2c3e50,#c0392b)">
+      <i id="lightboxIcono" class="fa-solid fa-masks-theater" style="font-size:6rem;color:rgba(255,255,255,0.3)"></i>
+    </div>
+    <div class="lightbox__caption">
+      <h3 id="lightboxTitulo">Edipo Rey</h3>
+      <p id="lightboxDesc">Compañía Nacional de Teatro · Julio 2026</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer-cv">
+  <div class="contenedor">
+    <div class="footer-cv__grid">
+      <div><div class="footer-cv__marca"><i class="fa-solid fa-city" style="color:var(--color-secundario)"></i> Ciudad Viva</div><p style="font-size:var(--tamaño-sm)">Portal cultural de la municipalidad.</p></div>
+      <div><h5>Explorar</h5><a href="agenda.html">Agenda</a><a href="lugares.html">Lugares</a><a href="galeria.html">Galería</a></div>
+      <div><h5>Participar</h5><a href="contacto.html">Convocar</a><a href="contacto.html">Boletín</a></div>
+      <div><h5>Municipal</h5><a href="#">Portal</a><a href="#">Privacidad</a></div>
+    </div>
+    <hr class="footer-cv__linea">
+    <p class="footer-cv__copy">© 2026 Ciudad Viva — Portal Cultural Municipal.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('btnToggle').addEventListener('click', () => {
+    document.getElementById('menuMovil').classList.toggle('abierto');
+  });
+
+  const iconosPorTipo = {
+    teatro: 'fa-masks-theater', musica: 'fa-music',
+    exposicion: 'fa-palette', festival: 'fa-star'
+  };
+
+  function abrirLightbox(tipo, titulo, desc, color) {
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightboxFoto').style.background = `linear-gradient(135deg, #2c3e50, ${color})`;
+    document.getElementById('lightboxIcono').className = `fa-solid ${iconosPorTipo[tipo] || 'fa-image'}`;
+    document.getElementById('lightboxIcono').style.cssText = 'font-size:6rem;color:rgba(255,255,255,0.3)';
+    document.getElementById('lightboxTitulo').textContent = titulo;
+    document.getElementById('lightboxDesc').textContent = desc;
+    lb.classList.add('activo');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.currentTarget.classList.contains('lightbox__cerrar')) {
+      document.getElementById('lightbox').classList.remove('activo');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarLightbox(); });
+
+  function filtrarGaleria(tipo, btn) {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo-cat'));
+    btn.classList.add('activo-cat');
+    document.querySelectorAll('.foto-item').forEach(item => {
+      item.style.display = (tipo === 'todos' || item.dataset.tipo === tipo) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
