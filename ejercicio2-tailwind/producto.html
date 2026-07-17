@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detalle de Producto — ReUse Market</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{eco:{DEFAULT:'#2d6a4f',light:'#40916c',dark:'#1b4332'},verde:{50:'#f0fdf4',100:'#dcfce7',400:'#4ade80',500:'#22c55e',600:'#16a34a'}},fontFamily:{sans:['Inter','sans-serif']}}}}</script>
+  <style>
+    .card-hover{transition:transform 0.3s ease,box-shadow 0.3s ease}.card-hover:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.12)}
+    .thumb{cursor:pointer;border:2px solid transparent;transition:border-color 0.2s}
+    .thumb.activo{border-color:#2d6a4f}
+    .badge-reacond{background:#dbeafe;color:#1e40af;padding:2px 10px;border-radius:50px;font-size:0.72rem;font-weight:700}
+  </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+
+<!-- NAVBAR -->
+<nav class="bg-eco-dark text-white sticky top-0 z-50 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="index.html" class="text-xl font-bold flex items-center gap-2"><span class="text-verde-400 text-2xl">♻</span> ReUse Market</a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <a href="index.html" class="text-white/80 hover:text-verde-400 transition-colors">Inicio</a>
+      <a href="catalogo.html" class="text-white/80 hover:text-verde-400 transition-colors">Catálogo</a>
+      <a href="vendedor.html" class="text-white/80 hover:text-verde-400 transition-colors">Vendedores</a>
+      <a href="carrito.html" class="text-white/80 hover:text-verde-400 transition-colors">Carrito</a>
+      <a href="publicar.html" class="bg-verde-600 hover:bg-verde-500 text-white px-4 py-2 rounded-full transition-colors font-semibold text-sm">+ Publicar</a>
+    </div>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="max-w-7xl mx-auto px-4 py-3 text-sm text-gray-400">
+  <a href="index.html" class="hover:text-eco transition-colors">Inicio</a> /
+  <a href="catalogo.html" class="hover:text-eco transition-colors"> Catálogo</a> /
+  <span class="text-gray-700"> iPhone 13 128GB</span>
+</div>
+
+<!-- DETALLE DE PRODUCTO -->
+<section class="max-w-7xl mx-auto px-4 py-6">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+    <!-- GALERÍA -->
+    <div>
+      <div id="imagenPrincipal" class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl h-96 flex items-center justify-center mb-4">
+        <span class="text-9xl">📱</span>
+      </div>
+      <div class="grid grid-cols-4 gap-3">
+        <div class="thumb activo bg-gray-100 rounded-2xl h-20 flex items-center justify-center text-3xl">📱</div>
+        <div class="thumb bg-gray-100 rounded-2xl h-20 flex items-center justify-center text-3xl">🔋</div>
+        <div class="thumb bg-gray-100 rounded-2xl h-20 flex items-center justify-center text-3xl">📦</div>
+        <div class="thumb bg-gray-100 rounded-2xl h-20 flex items-center justify-center text-3xl">🔌</div>
+      </div>
+    </div>
+
+    <!-- INFORMACIÓN -->
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <span class="badge-reacond">Reacondicionado</span>
+        <span class="text-xs text-gray-400">Tecnología · Smartphones</span>
+      </div>
+      <h1 class="text-3xl font-extrabold text-gray-900 mb-2">iPhone 13 — 128GB Midnight</h1>
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-yellow-400 text-lg">⭐⭐⭐⭐⭐</span>
+        <span class="text-gray-500 text-sm">(42 reseñas)</span>
+      </div>
+
+      <div class="text-4xl font-extrabold text-eco mb-1">S/ 1,200</div>
+      <div class="text-sm text-gray-400 mb-5 line-through">Precio nuevo: S/ 2,499</div>
+
+      <!-- Características rápidas -->
+      <div class="grid grid-cols-2 gap-3 mb-6">
+        <div class="bg-verde-50 rounded-2xl p-3 text-sm">
+          <span class="text-gray-500">Estado</span><br>
+          <strong class="text-eco">Reacondicionado A+</strong>
+        </div>
+        <div class="bg-verde-50 rounded-2xl p-3 text-sm">
+          <span class="text-gray-500">Almacenamiento</span><br>
+          <strong class="text-eco">128 GB</strong>
+        </div>
+        <div class="bg-verde-50 rounded-2xl p-3 text-sm">
+          <span class="text-gray-500">Garantía</span><br>
+          <strong class="text-eco">6 meses</strong>
+        </div>
+        <div class="bg-verde-50 rounded-2xl p-3 text-sm">
+          <span class="text-gray-500">Ubicación</span><br>
+          <strong class="text-eco">Miraflores, Lima</strong>
+        </div>
+      </div>
+
+      <!-- Acciones -->
+      <div class="flex flex-col sm:flex-row gap-3 mb-6">
+        <a href="carrito.html" class="flex-1 bg-eco hover:bg-eco-dark text-white font-bold py-3 rounded-full text-center transition-all duration-300 hover:-translate-y-1 shadow-lg">
+          🛒 Agregar al carrito
+        </a>
+        <button class="flex-1 border-2 border-eco text-eco hover:bg-eco hover:text-white font-bold py-3 rounded-full transition-all duration-300 hover:-translate-y-1">
+          💬 Contactar vendedor
+        </button>
+      </div>
+
+      <!-- Vendedor -->
+      <a href="vendedor.html" class="block bg-white rounded-3xl p-4 shadow-sm card-hover border border-gray-100">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-eco flex items-center justify-center text-white font-bold text-lg">J</div>
+          <div class="flex-1">
+            <p class="font-bold text-gray-900">Juan Pérez</p>
+            <p class="text-sm text-gray-400">⭐ 4.9 · 128 ventas · Miembro desde 2022</p>
+          </div>
+          <span class="text-eco text-sm font-semibold">Ver perfil →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- DESCRIPCIÓN Y CARACTERÍSTICAS -->
+  <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div>
+      <h2 class="text-2xl font-bold mb-4 text-gray-900">Descripción</h2>
+      <p class="text-gray-600 leading-relaxed">iPhone 13 en excelente estado reacondicionado. Pantalla OLED 6.1" sin rayones, batería al 92% de capacidad, sin bloqueo de operadora. Incluye cable USB-C y caja original. Revisado y certificado por técnico especializado.</p>
+      <ul class="mt-4 space-y-2 text-sm text-gray-600">
+        <li class="flex items-center gap-2"><span class="text-eco">✓</span> Pantalla OLED 6.1" — 0 rayones</li>
+        <li class="flex items-center gap-2"><span class="text-eco">✓</span> Batería: 92% de capacidad</li>
+        <li class="flex items-center gap-2"><span class="text-eco">✓</span> Libre de operadora</li>
+        <li class="flex items-center gap-2"><span class="text-eco">✓</span> iOS 17.4 actualizado</li>
+        <li class="flex items-center gap-2"><span class="text-eco">✓</span> Sin iCloud activado</li>
+      </ul>
+    </div>
+    <div class="bg-verde-50 rounded-3xl p-6">
+      <h3 class="font-bold text-eco mb-4">🌿 Impacto ambiental de esta compra</h3>
+      <p class="text-gray-600 text-sm leading-relaxed">Al comprar este teléfono reacondicionado en lugar de uno nuevo, estás evitando la emisión de aproximadamente <strong class="text-eco">70 kg de CO₂</strong> y el uso de <strong class="text-eco">8,000 litros de agua</strong> necesarios para fabricar un dispositivo nuevo.</p>
+      <div class="mt-4 flex gap-4 text-center">
+        <div><div class="text-2xl font-extrabold text-eco">70kg</div><div class="text-xs text-gray-500">CO₂ evitado</div></div>
+        <div><div class="text-2xl font-extrabold text-eco">8K L</div><div class="text-xs text-gray-500">Agua ahorrada</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTOS RELACIONADOS -->
+  <div class="mt-12">
+    <h2 class="text-2xl font-bold mb-6 text-gray-900">Productos relacionados</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+        <div class="h-32 bg-gray-100 flex items-center justify-center"><span class="text-4xl">💻</span></div>
+        <div class="p-3 text-sm"><p class="font-semibold leading-tight">MacBook Air M1</p><p class="text-eco font-bold">S/ 3,500</p></div>
+      </a>
+      <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+        <div class="h-32 bg-gray-100 flex items-center justify-center"><span class="text-4xl">⌚</span></div>
+        <div class="p-3 text-sm"><p class="font-semibold leading-tight">Apple Watch SE</p><p class="text-eco font-bold">S/ 650</p></div>
+      </a>
+      <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+        <div class="h-32 bg-gray-100 flex items-center justify-center"><span class="text-4xl">🎧</span></div>
+        <div class="p-3 text-sm"><p class="font-semibold leading-tight">AirPods Pro 2da gen</p><p class="text-eco font-bold">S/ 480</p></div>
+      </a>
+      <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+        <div class="h-32 bg-gray-100 flex items-center justify-center"><span class="text-4xl">📱</span></div>
+        <div class="p-3 text-sm"><p class="font-semibold leading-tight">iPhone 12 64GB</p><p class="text-eco font-bold">S/ 950</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-eco-dark text-white py-8 mt-12">
+  <div class="max-w-7xl mx-auto px-4 text-center text-white/50 text-sm">
+    <div class="text-xl font-extrabold text-verde-400 mb-2">♻ ReUse Market</div>
+    <p>© 2026 ReUse Market. Marketplace de economía circular.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+/* ============================================
+   Ciudad Viva — Hoja de estilos para impresión
+   Ficha del evento imprimible
+   ============================================ */
+
+@media print {
+  /* Ocultar navegación y elementos no esenciales */
+  .nav-cv,
+  .nav-cv__movil,
+  .footer-cv,
+  .btn,
+  .seccion--roja,
+  .no-imprimir { display: none !important; }
+
+  /* Ajuste base */
+  body {
+    font-family: Georgia, serif;
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Contenedor sin márgenes laterales */
+  .contenedor { max-width: 100%; padding: 0; }
+
+  /* Ficha del evento — página imprimible */
+  .ficha-evento {
+    padding: 20pt;
+    border: 2pt solid #000;
+    border-radius: 0;
+    page-break-inside: avoid;
+  }
+
+  .ficha-evento__titulo {
+    font-size: 24pt;
+    font-weight: bold;
+    border-bottom: 2pt solid #c0392b;
+    padding-bottom: 8pt;
+    margin-bottom: 16pt;
+    color: #000;
+  }
+
+  .ficha-evento__dato {
+    display: flex;
+    gap: 8pt;
+    margin-bottom: 6pt;
+    font-size: 11pt;
+  }
+  .ficha-evento__dato strong { min-width: 80pt; }
+
+  /* Cabecera de impresión */
+  .ficha-evento::before {
+    content: "CIUDAD VIVA — Portal Cultural Municipal";
+    display: block;
+    font-size: 9pt;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1pt;
+    margin-bottom: 12pt;
+  }
+
+  /* QR placeholder */
+  .ficha-evento__qr {
+    width: 80pt;
+    height: 80pt;
+    border: 1pt solid #000;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8pt;
+    color: #666;
+    margin-left: 12pt;
+  }
+
+  /* URL impresa */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666;
+  }
+  a.btn::after, .nav-cv a::after { content: none; }
+
+  /* Saltos de página */
+  h1, h2 { page-break-after: avoid; }
+  .card  { page-break-inside: avoid; }
+
+  /* Colores seguros para impresión */
+  .seccion--oscura { background: #f0f0f0 !important; color: #000 !important; }
+}

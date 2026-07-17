@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reservar Cita — Salud 360</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav-salud z-depth-2">
+  <div class="nav-wrapper container">
+    <a href="index.html" class="brand-logo"><i class="material-icons left">local_hospital</i>Salud 360</a>
+    <a href="#" data-target="sidenavPrincipal" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="especialidades.html">Especialidades</a></li>
+      <li><a href="directorio.html">Médicos</a></li>
+      <li><a href="reserva.html" class="active">Reservar Cita</a></li>
+      <li><a href="mis-citas.html">Mis Citas</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+<ul class="sidenav" id="sidenavPrincipal">
+  <li><div class="sidenav-header"><span class="sidenav-brand">Salud 360</span></div></li>
+  <li><a href="index.html"><i class="material-icons">home</i>Inicio</a></li>
+  <li><a href="especialidades.html"><i class="material-icons">medical_services</i>Especialidades</a></li>
+  <li><a href="directorio.html"><i class="material-icons">people</i>Médicos</a></li>
+  <li><a href="reserva.html"><i class="material-icons">event</i>Reservar Cita</a></li>
+  <li><a href="mis-citas.html"><i class="material-icons">assignment</i>Mis Citas</a></li>
+  <li><a href="contacto.html"><i class="material-icons">contact_mail</i>Contacto</a></li>
+</ul>
+
+<!-- ENCABEZADO -->
+<div class="seccion-oscura" style="padding:40px 0;text-align:center">
+  <h1 class="white-text" style="font-weight:800">Reserva tu <span style="color:var(--azul-palo)">Cita</span></h1>
+  <p style="color:rgba(255,255,255,0.7)">Completa los pasos para confirmar tu cita médica</p>
+</div>
+
+<div class="container" style="padding:40px 0">
+  <div class="row">
+
+    <!-- PASOS (sidebar) -->
+    <div class="col s12 m3">
+      <div id="pasosSidebar">
+        <div class="paso-reserva activo" id="paso1-indicator">
+          <div class="paso-num">1</div>
+          <div><strong>Sede</strong><br><small>Selecciona sede</small></div>
+        </div>
+        <div class="paso-reserva pendiente" id="paso2-indicator">
+          <div class="paso-num">2</div>
+          <div><strong>Especialidad</strong><br><small>y médico</small></div>
+        </div>
+        <div class="paso-reserva pendiente" id="paso3-indicator">
+          <div class="paso-num">3</div>
+          <div><strong>Fecha y Hora</strong><br><small>Disponibilidad</small></div>
+        </div>
+        <div class="paso-reserva pendiente" id="paso4-indicator">
+          <div class="paso-num">4</div>
+          <div><strong>Confirmación</strong><br><small>Resumen</small></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENIDO DEL FORMULARIO -->
+    <div class="col s12 m9">
+      <div class="card z-depth-1" style="border-radius:16px">
+        <div class="card-content">
+
+          <!-- PASO 1: SEDE -->
+          <div id="paso1-content">
+            <h5 style="color:var(--azul);font-weight:700"><i class="material-icons left">location_on</i>Paso 1: Selecciona la sede</h5>
+            <div class="row">
+              <div class="col s12 m4">
+                <label>
+                  <input name="sede" type="radio" value="miraflores" class="sede-radio">
+                  <span></span>
+                </label>
+                <div class="card hoverable z-depth-1" style="border-radius:12px;cursor:pointer" onclick="seleccionarSede('miraflores', this)">
+                  <div class="card-content center">
+                    <i class="material-icons" style="font-size:3rem;color:var(--azul)">business</i>
+                    <h6 class="fw-bold">Miraflores</h6>
+                    <p class="grey-text small">Av. Larco 201</p>
+                    <span class="chip-exito">Disponible hoy</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col s12 m4">
+                <div class="card hoverable z-depth-1" style="border-radius:12px;cursor:pointer" onclick="seleccionarSede('san_isidro', this)">
+                  <div class="card-content center">
+                    <i class="material-icons" style="font-size:3rem;color:var(--azul)">business</i>
+                    <h6 class="fw-bold">San Isidro</h6>
+                    <p class="grey-text small">Av. Javier Prado 2</p>
+                    <span class="chip-exito">Disponible</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col s12 m4">
+                <div class="card hoverable z-depth-1" style="border-radius:12px;cursor:pointer" onclick="seleccionarSede('la_molina', this)">
+                  <div class="card-content center">
+                    <i class="material-icons" style="font-size:3rem;color:var(--azul)">business</i>
+                    <h6 class="fw-bold">La Molina</h6>
+                    <p class="grey-text small">Av. La Fontana 150</p>
+                    <span class="chip-salud">Disponible</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="right-align">
+              <button onclick="siguientePaso(1)" class="btn btn-azul white-text waves-effect" style="border-radius:50px">Siguiente <i class="material-icons right">arrow_forward</i></button>
+            </div>
+          </div>
+
+          <!-- PASO 2: ESPECIALIDAD Y MÉDICO -->
+          <div id="paso2-content" style="display:none">
+            <h5 style="color:var(--azul);font-weight:700"><i class="material-icons left">medical_services</i>Paso 2: Especialidad y médico</h5>
+            <div class="row">
+              <div class="col s12 m6">
+                <div class="input-field">
+                  <select id="selectEspecialidad" class="browser-default" style="border-radius:8px;border:1px solid #ddd;padding:10px;width:100%">
+                    <option value="">Selecciona especialidad...</option>
+                    <option>Cardiología</option>
+                    <option>Neurología</option>
+                    <option>Pediatría</option>
+                    <option>Ginecología</option>
+                    <option>Traumatología</option>
+                    <option>Oftalmología</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col s12 m6">
+                <div class="input-field">
+                  <select id="selectMedico" class="browser-default" style="border-radius:8px;border:1px solid #ddd;padding:10px;width:100%">
+                    <option>Dr. Alejandro Soto</option>
+                    <option>Dra. Patricia Ruiz</option>
+                    <option>Dr. José Quispe</option>
+                    <option>Dra. Carmen Flores</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col s12">
+                <div class="input-field">
+                  <select class="browser-default" style="border-radius:8px;border:1px solid #ddd;padding:10px;width:100%">
+                    <option>Consulta general</option>
+                    <option>Control / Seguimiento</option>
+                    <option>Segunda opinión</option>
+                    <option>Teleconsulta (videollamada)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s6"><button onclick="siguientePaso(0)" class="btn-flat waves-effect"><i class="material-icons left">arrow_back</i>Anterior</button></div>
+              <div class="col s6 right-align"><button onclick="siguientePaso(2)" class="btn btn-azul white-text waves-effect" style="border-radius:50px">Siguiente <i class="material-icons right">arrow_forward</i></button></div>
+            </div>
+          </div>
+
+          <!-- PASO 3: FECHA Y HORA -->
+          <div id="paso3-content" style="display:none">
+            <h5 style="color:var(--azul);font-weight:700"><i class="material-icons left">event</i>Paso 3: Fecha y hora</h5>
+            <div class="row">
+              <div class="col s12 m6">
+                <div class="input-field">
+                  <input type="text" id="fecha" class="datepicker" placeholder="Selecciona fecha">
+                  <label for="fecha">Fecha de la cita</label>
+                </div>
+              </div>
+              <div class="col s12 m6">
+                <div class="input-field">
+                  <input type="text" id="hora" class="timepicker" placeholder="Selecciona hora">
+                  <label for="hora">Hora de la cita</label>
+                </div>
+              </div>
+              <div class="col s12">
+                <p style="font-weight:600;margin-bottom:12px">Horarios disponibles:</p>
+                <div id="horariosDisponibles" class="flex-container" style="display:flex;flex-wrap:wrap;gap:10px">
+                  <button class="btn-small btn-azul white-text waves-effect" style="border-radius:50px" onclick="seleccionarHora('08:00')">08:00</button>
+                  <button class="btn-small waves-effect" style="border-radius:50px;background:#f0f4f8" onclick="seleccionarHora('09:00')">09:00</button>
+                  <button class="btn-small waves-effect" style="border-radius:50px;background:#f0f4f8" onclick="seleccionarHora('10:00')">10:00</button>
+                  <button class="btn-small waves-effect" style="border-radius:50px;background:#f0f4f8" onclick="seleccionarHora('11:00')">11:00</button>
+                  <button class="btn-small waves-effect" style="border-radius:50px;background:#e0e0e0;color:#9e9e9e" disabled>12:00 (ocupado)</button>
+                  <button class="btn-small waves-effect" style="border-radius:50px;background:#f0f4f8" onclick="seleccionarHora('14:00')">14:00</button>
+                  <button class="btn-small waves-effect" style="border-radius:50px;background:#f0f4f8" onclick="seleccionarHora('15:00')">15:00</button>
+                  <button class="btn-small waves-effect" style="border-radius:50px;background:#e0e0e0;color:#9e9e9e" disabled>16:00 (ocupado)</button>
+                </div>
+              </div>
+              <div class="col s12 mt-3" style="margin-top:20px">
+                <div class="input-field">
+                  <textarea id="motivo" class="materialize-textarea" style="border-radius:8px;border:1px solid #ddd;padding:10px" placeholder="Describe el motivo de tu consulta..."></textarea>
+                  <label for="motivo">Motivo de la consulta (opcional)</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s6"><button onclick="siguientePaso(1)" class="btn-flat waves-effect"><i class="material-icons left">arrow_back</i>Anterior</button></div>
+              <div class="col s6 right-align"><button onclick="siguientePaso(3)" class="btn btn-azul white-text waves-effect" style="border-radius:50px">Revisar cita <i class="material-icons right">arrow_forward</i></button></div>
+            </div>
+          </div>
+
+          <!-- PASO 4: CONFIRMACIÓN -->
+          <div id="paso4-content" style="display:none">
+            <h5 style="color:var(--azul);font-weight:700"><i class="material-icons left">check_circle</i>Paso 4: Confirma tu cita</h5>
+            <div class="card z-depth-0" style="background:var(--fondo);border-radius:12px;padding:20px;margin-bottom:20px">
+              <h6 class="fw-bold" style="color:var(--azul);margin-top:0">Resumen de tu cita</h6>
+              <ul class="collection" style="border:none">
+                <li class="collection-item" style="border:none"><strong>Sede:</strong> Miraflores — Av. Larco 201</li>
+                <li class="collection-item" style="border:none"><strong>Especialidad:</strong> Cardiología</li>
+                <li class="collection-item" style="border:none"><strong>Médico:</strong> Dr. Alejandro Soto</li>
+                <li class="collection-item" style="border:none"><strong>Fecha:</strong> 20 de agosto, 2026</li>
+                <li class="collection-item" style="border:none"><strong>Hora:</strong> 08:00 a.m.</li>
+                <li class="collection-item" style="border:none"><strong>Tipo:</strong> Consulta general</li>
+              </ul>
+            </div>
+            <div class="input-field">
+              <input type="text" id="nombrePaciente" placeholder="Tu nombre completo" required>
+              <label for="nombrePaciente">Nombre del paciente *</label>
+            </div>
+            <div class="input-field">
+              <input type="tel" id="telefono" placeholder="+51 999 000 000">
+              <label for="telefono">Teléfono de contacto *</label>
+            </div>
+            <label><input type="checkbox" class="filled-in"><span>Acepto los términos y condiciones de Salud 360</span></label>
+            <div class="row" style="margin-top:20px">
+              <div class="col s6"><button onclick="siguientePaso(2)" class="btn-flat waves-effect"><i class="material-icons left">arrow_back</i>Anterior</button></div>
+              <div class="col s6 right-align"><button onclick="confirmarCita()" class="btn btn-azul white-text waves-effect z-depth-2" style="border-radius:50px"><i class="material-icons left">check</i>Confirmar cita</button></div>
+            </div>
+          </div>
+
+          <!-- ÉXITO -->
+          <div id="exitoContent" style="display:none;text-align:center;padding:40px">
+            <i class="material-icons" style="font-size:5rem;color:var(--exito)">check_circle</i>
+            <h4 style="color:var(--exito);font-weight:700">¡Cita confirmada!</h4>
+            <p class="grey-text">Te enviaremos un recordatorio por WhatsApp y correo 24 horas antes de tu cita.</p>
+            <p><strong>Código de cita:</strong> <span style="color:var(--azul);font-weight:700">#S360-4821</span></p>
+            <a href="mis-citas.html" class="btn btn-azul white-text waves-effect" style="border-radius:50px;margin-top:16px">Ver mis citas</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer-salud">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m6"><h5 class="footer-titulo">Salud 360</h5><p>Red de centros de salud comprometida con tu bienestar.</p></div>
+      <div class="col s12 m6"><h6 class="footer-titulo">Contacto</h6><p><i class="material-icons tiny">phone</i> +51 (1) 234-5000 &nbsp; <i class="material-icons tiny">email</i> info@salud360.pe</p></div>
+    </div>
+    <div class="divider" style="background:rgba(255,255,255,0.1)"></div>
+    <p class="center" style="padding-top:16px;font-size:0.85rem">© 2026 Salud 360. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  let pasoActual = 1;
+  const totalPasos = 4;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
+    M.Datepicker.init(document.querySelectorAll('.datepicker'), { format: 'dd mmmm, yyyy', i18n: { months:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], monthsShort:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'], weekdays:['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'], weekdaysShort:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'], weekdaysAbbrev:['D','L','M','M','J','V','S'], cancel:'Cancelar', done:'OK' } });
+    M.Timepicker.init(document.querySelectorAll('.timepicker'), { twelveHour: false });
+  });
+
+  function seleccionarSede(valor, card) {
+    document.querySelectorAll('[onclick*="seleccionarSede"]').forEach(c => c.style.borderColor = '');
+    card.style.border = '2px solid var(--azul)';
+  }
+
+  function seleccionarHora(hora) {
+    M.toast({ html: `Hora seleccionada: ${hora}`, classes: 'rounded', displayLength: 1500 });
+  }
+
+  function siguientePaso(dir) {
+    document.getElementById(`paso${pasoActual}-content`).style.display = 'none';
+    document.getElementById(`paso${pasoActual}-indicator`).classList.remove('activo');
+    document.getElementById(`paso${pasoActual}-indicator`).classList.add('completado');
+    pasoActual += (dir === 0 ? -1 : 1);
+    if (pasoActual < 1) pasoActual = 1;
+    if (pasoActual > totalPasos) return;
+    document.getElementById(`paso${pasoActual}-content`).style.display = 'block';
+    const indicator = document.getElementById(`paso${pasoActual}-indicator`);
+    indicator.classList.remove('pendiente', 'completado');
+    indicator.classList.add('activo');
+  }
+
+  function confirmarCita() {
+    document.getElementById(`paso4-content`).style.display = 'none';
+    document.getElementById(`paso4-indicator`).classList.remove('activo');
+    document.getElementById(`paso4-indicator`).classList.add('completado');
+    document.getElementById('exitoContent').style.display = 'block';
+    M.toast({ html: '¡Cita confirmada! Recibirás un recordatorio por correo.', classes: 'rounded green', displayLength: 4000 });
+  }
+</script>
+</body>
+</html>

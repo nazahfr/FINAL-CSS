@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Directorio Médico — Salud 360</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav-salud z-depth-2">
+  <div class="nav-wrapper container">
+    <a href="index.html" class="brand-logo"><i class="material-icons left">local_hospital</i>Salud 360</a>
+    <a href="#" data-target="sidenavPrincipal" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="especialidades.html">Especialidades</a></li>
+      <li><a href="directorio.html" class="active">Médicos</a></li>
+      <li><a href="reserva.html">Reservar Cita</a></li>
+      <li><a href="mis-citas.html">Mis Citas</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+<ul class="sidenav" id="sidenavPrincipal">
+  <li><div class="sidenav-header"><span class="sidenav-brand">Salud 360</span></div></li>
+  <li><a href="index.html"><i class="material-icons">home</i>Inicio</a></li>
+  <li><a href="especialidades.html"><i class="material-icons">medical_services</i>Especialidades</a></li>
+  <li><a href="directorio.html"><i class="material-icons">people</i>Médicos</a></li>
+  <li><a href="reserva.html"><i class="material-icons">event</i>Reservar Cita</a></li>
+  <li><a href="mis-citas.html"><i class="material-icons">assignment</i>Mis Citas</a></li>
+  <li><a href="contacto.html"><i class="material-icons">contact_mail</i>Contacto</a></li>
+</ul>
+
+<!-- ENCABEZADO -->
+<div class="seccion-oscura" style="padding:40px 0;text-align:center">
+  <h1 class="white-text" style="font-weight:800">Directorio <span style="color:var(--azul-palo)">Médico</span></h1>
+  <p style="color:rgba(255,255,255,0.7)">Encuentra al especialista ideal para ti</p>
+</div>
+
+<!-- BUSCADOR Y FILTROS -->
+<div class="seccion-gris" style="padding:24px 0">
+  <div class="container">
+    <div class="row" style="margin-bottom:0">
+      <div class="col s12 m6">
+        <div class="input-field" style="margin:0">
+          <i class="material-icons prefix" style="color:var(--azul)">search</i>
+          <input type="text" id="buscarMedico" placeholder="Buscar por nombre o especialidad...">
+          <label for="buscarMedico">Buscar médico</label>
+        </div>
+      </div>
+      <div class="col s6 m3">
+        <div class="input-field" style="margin:0">
+          <select id="filtroEspecialidad" class="browser-default" style="border-radius:8px;border:1px solid #ddd;padding:10px">
+            <option value="">Todas las especialidades</option>
+            <option>Cardiología</option>
+            <option>Neurología</option>
+            <option>Pediatría</option>
+            <option>Ginecología</option>
+            <option>Traumatología</option>
+            <option>Oftalmología</option>
+          </select>
+        </div>
+      </div>
+      <div class="col s6 m3">
+        <div class="input-field" style="margin:0">
+          <select class="browser-default" style="border-radius:8px;border:1px solid #ddd;padding:10px">
+            <option value="">Todas las sedes</option>
+            <option>Miraflores</option>
+            <option>San Isidro</option>
+            <option>La Molina</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIRECTORIO DE MÉDICOS -->
+<section style="padding:40px 0">
+  <div class="container">
+    <div class="row" id="gridMedicos">
+
+      <!-- Médico 1 -->
+      <div class="col s12 m6 l4 medico-item" data-especialidad="Cardiología">
+        <div class="card card-medico z-depth-1 hoverable">
+          <div class="card-image card-medico">
+            <i class="material-icons white-text" style="font-size:5rem">person</i>
+          </div>
+          <div class="card-content">
+            <span class="card-title center" style="font-size:1.1rem">Dr. Alejandro Soto</span>
+            <p class="center especialidad-badge">Cardiología</p>
+            <div class="center" style="margin:8px 0">
+              <span class="chip-salud">⭐ 4.9</span>
+              <span class="chip-salud">+500 pacientes</span>
+            </div>
+            <p class="grey-text center" style="font-size:0.85rem">Sede: Miraflores</p>
+          </div>
+          <div class="card-action center">
+            <a class="modal-trigger btn btn-azul white-text waves-effect" style="border-radius:50px;margin-right:6px" href="#modalMedico1">Ver perfil</a>
+            <a href="reserva.html" class="btn btn-azul-outline waves-effect" style="border-radius:50px">Cita</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Médico 2 -->
+      <div class="col s12 m6 l4 medico-item" data-especialidad="Neurología">
+        <div class="card card-medico z-depth-1 hoverable">
+          <div class="card-image card-medico" style="background:linear-gradient(135deg,#0f3460,#0077b6)">
+            <i class="material-icons white-text" style="font-size:5rem">person</i>
+          </div>
+          <div class="card-content">
+            <span class="card-title center" style="font-size:1.1rem">Dra. Patricia Ruiz</span>
+            <p class="center especialidad-badge">Neurología</p>
+            <div class="center" style="margin:8px 0"><span class="chip-salud">⭐ 4.8</span><span class="chip-salud">+320 pacientes</span></div>
+            <p class="grey-text center" style="font-size:0.85rem">Sede: San Isidro</p>
+          </div>
+          <div class="card-action center">
+            <a class="modal-trigger btn btn-azul white-text waves-effect" style="border-radius:50px;margin-right:6px" href="#modalMedico2">Ver perfil</a>
+            <a href="reserva.html" class="btn btn-azul-outline waves-effect" style="border-radius:50px">Cita</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Médico 3 -->
+      <div class="col s12 m6 l4 medico-item" data-especialidad="Pediatría">
+        <div class="card card-medico z-depth-1 hoverable">
+          <div class="card-image card-medico" style="background:linear-gradient(135deg,#00b4d8,#0077b6)">
+            <i class="material-icons white-text" style="font-size:5rem">person</i>
+          </div>
+          <div class="card-content">
+            <span class="card-title center" style="font-size:1.1rem">Dr. José Quispe</span>
+            <p class="center especialidad-badge">Pediatría</p>
+            <div class="center" style="margin:8px 0"><span class="chip-salud">⭐ 5.0</span><span class="chip-salud">+800 pacientes</span></div>
+            <p class="grey-text center" style="font-size:0.85rem">Sede: La Molina</p>
+          </div>
+          <div class="card-action center">
+            <a class="btn btn-azul white-text waves-effect" style="border-radius:50px;margin-right:6px" href="#modalMedico3">Ver perfil</a>
+            <a href="reserva.html" class="btn btn-azul-outline waves-effect" style="border-radius:50px">Cita</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Médico 4 -->
+      <div class="col s12 m6 l4 medico-item" data-especialidad="Ginecología">
+        <div class="card card-medico z-depth-1 hoverable">
+          <div class="card-image card-medico" style="background:linear-gradient(135deg,#90e0ef,#00b4d8)">
+            <i class="material-icons white-text" style="font-size:5rem">person</i>
+          </div>
+          <div class="card-content">
+            <span class="card-title center" style="font-size:1.1rem">Dra. Carmen Flores</span>
+            <p class="center especialidad-badge">Ginecología</p>
+            <div class="center" style="margin:8px 0"><span class="chip-salud">⭐ 4.9</span><span class="chip-salud">+600 pacientes</span></div>
+            <p class="grey-text center" style="font-size:0.85rem">Sede: Miraflores</p>
+          </div>
+          <div class="card-action center">
+            <a href="reserva.html" class="btn btn-azul white-text waves-effect" style="border-radius:50px;margin-right:6px">Ver perfil</a>
+            <a href="reserva.html" class="btn btn-azul-outline waves-effect" style="border-radius:50px">Cita</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Médico 5 -->
+      <div class="col s12 m6 l4 medico-item" data-especialidad="Traumatología">
+        <div class="card card-medico z-depth-1 hoverable">
+          <div class="card-image card-medico" style="background:linear-gradient(135deg,#03045e,#0077b6)">
+            <i class="material-icons white-text" style="font-size:5rem">person</i>
+          </div>
+          <div class="card-content">
+            <span class="card-title center" style="font-size:1.1rem">Dr. Ricardo Campos</span>
+            <p class="center especialidad-badge">Traumatología</p>
+            <div class="center" style="margin:8px 0"><span class="chip-salud">⭐ 4.7</span><span class="chip-salud">+400 pacientes</span></div>
+            <p class="grey-text center" style="font-size:0.85rem">Sede: San Isidro</p>
+          </div>
+          <div class="card-action center">
+            <a href="reserva.html" class="btn btn-azul white-text waves-effect" style="border-radius:50px;margin-right:6px">Ver perfil</a>
+            <a href="reserva.html" class="btn btn-azul-outline waves-effect" style="border-radius:50px">Cita</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Médico 6 -->
+      <div class="col s12 m6 l4 medico-item" data-especialidad="Oftalmología">
+        <div class="card card-medico z-depth-1 hoverable">
+          <div class="card-image card-medico" style="background:linear-gradient(135deg,#0077b6,#90e0ef)">
+            <i class="material-icons white-text" style="font-size:5rem">person</i>
+          </div>
+          <div class="card-content">
+            <span class="card-title center" style="font-size:1.1rem">Dra. Sofía Navarro</span>
+            <p class="center especialidad-badge">Oftalmología</p>
+            <div class="center" style="margin:8px 0"><span class="chip-salud">⭐ 4.8</span><span class="chip-salud">+350 pacientes</span></div>
+            <p class="grey-text center" style="font-size:0.85rem">Sede: La Molina</p>
+          </div>
+          <div class="card-action center">
+            <a href="reserva.html" class="btn btn-azul white-text waves-effect" style="border-radius:50px;margin-right:6px">Ver perfil</a>
+            <a href="reserva.html" class="btn btn-azul-outline waves-effect" style="border-radius:50px">Cita</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MODAL PERFIL MÉDICO 1 -->
+<div id="modalMedico1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <div class="row valign-wrapper" style="background:linear-gradient(135deg,var(--oscuro),var(--azul));padding:24px;border-radius:8px;margin-bottom:20px">
+      <div class="col s3 center">
+        <div style="width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto">
+          <i class="material-icons white-text" style="font-size:3rem">person</i>
+        </div>
+      </div>
+      <div class="col s9 white-text">
+        <h5 style="margin:0;font-weight:700">Dr. Alejandro Soto</h5>
+        <p style="color:var(--azul-palo);margin:4px 0;font-weight:600">Cardiología</p>
+        <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.85rem">CMP: 34821 · RNE: 17423</p>
+      </div>
+    </div>
+    <h6 class="fw-bold" style="color:var(--azul)">Sobre el médico</h6>
+    <p class="grey-text">Cardiólogo con más de 15 años de experiencia. Especialización en cardiología intervencionista en la Universidad de Barcelona. Jefe del departamento de Cardiología de Salud 360.</p>
+    <div class="row">
+      <div class="col s6"><span class="chip-salud">⭐ 4.9 calificación</span></div>
+      <div class="col s6"><span class="chip-salud">+500 pacientes</span></div>
+    </div>
+    <h6 class="fw-bold" style="color:var(--azul);margin-top:16px">Horarios de atención</h6>
+    <ul class="collection">
+      <li class="collection-item">Lunes – Miércoles: 8:00 a.m. – 1:00 p.m.</li>
+      <li class="collection-item">Jueves – Viernes: 2:00 p.m. – 7:00 p.m.</li>
+      <li class="collection-item">Sábado: 8:00 a.m. – 12:00 m.</li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <a href="reserva.html" class="btn btn-azul white-text waves-effect" style="border-radius:50px;margin-right:8px">Reservar cita</a>
+    <a href="#!" class="modal-close btn-flat waves-effect">Cerrar</a>
+  </div>
+</div>
+
+<!-- MODAL 2 y 3 (simplificados) -->
+<div id="modalMedico2" class="modal">
+  <div class="modal-content">
+    <h5 style="color:var(--azul)">Dra. Patricia Ruiz — Neurología</h5>
+    <p>Neuróloga con 12 años de experiencia. Especialista en epilepsia, cefaleas y neurología vascular. CMP: 28743.</p>
+    <p class="grey-text">Sede: San Isidro · Horario: Lun-Vie 9am - 6pm</p>
+  </div>
+  <div class="modal-footer"><a href="reserva.html" class="btn btn-azul white-text waves-effect" style="border-radius:50px;margin-right:8px">Reservar cita</a><a href="#!" class="modal-close btn-flat">Cerrar</a></div>
+</div>
+<div id="modalMedico3" class="modal">
+  <div class="modal-content">
+    <h5 style="color:var(--azul)">Dr. José Quispe — Pediatría</h5>
+    <p>Pediatra con 18 años de experiencia. Subespecialista en neumología pediátrica. CMP: 19847.</p>
+    <p class="grey-text">Sede: La Molina · Horario: Lun-Sáb 8am - 5pm</p>
+  </div>
+  <div class="modal-footer"><a href="reserva.html" class="btn btn-azul white-text waves-effect" style="border-radius:50px;margin-right:8px">Reservar cita</a><a href="#!" class="modal-close btn-flat">Cerrar</a></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer-salud">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m4"><h5 class="footer-titulo">Salud 360</h5><p>Red de centros de salud comprometida con tu bienestar.</p></div>
+      <div class="col s6 m2"><h6 class="footer-titulo">Servicios</h6><ul><li><a href="especialidades.html">Especialidades</a></li><li><a href="directorio.html">Médicos</a></li><li><a href="reserva.html">Citas</a></li></ul></div>
+      <div class="col s6 m2"><h6 class="footer-titulo">Pacientes</h6><ul><li><a href="mis-citas.html">Mis Citas</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div class="col s12 m4"><h6 class="footer-titulo">Contacto</h6><p><i class="material-icons tiny">phone</i> +51 (1) 234-5000</p></div>
+    </div>
+    <div class="divider" style="background:rgba(255,255,255,0.1)"></div>
+    <p class="center" style="padding-top:16px;font-size:0.85rem">© 2026 Salud 360. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
+    M.Modal.init(document.querySelectorAll('.modal'));
+
+    // Filtro por especialidad
+    document.getElementById('filtroEspecialidad').addEventListener('change', function() {
+      const val = this.value;
+      document.querySelectorAll('.medico-item').forEach(item => {
+        item.style.display = (!val || item.dataset.especialidad === val) ? '' : 'none';
+      });
+    });
+
+    // Buscador
+    document.getElementById('buscarMedico').addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('.medico-item').forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>

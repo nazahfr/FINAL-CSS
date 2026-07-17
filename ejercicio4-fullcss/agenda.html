@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agenda — Ciudad Viva</title>
+  <meta name="description" content="Agenda cultural completa: teatro, música, exposiciones y talleres en Ciudad Viva.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/print.css" rel="stylesheet" media="print">
+  <style>
+    /* Filtros simulados */
+    .filtros { display: flex; flex-wrap: wrap; gap: var(--espacio-2); margin-bottom: var(--espacio-8); }
+    .filtro-btn {
+      padding: var(--espacio-2) var(--espacio-4);
+      border: 2px solid var(--color-borde);
+      border-radius: var(--radio-pill);
+      background: white;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: var(--tamaño-sm);
+      color: var(--color-muted);
+      transition: all var(--transicion-rapida);
+      font-family: var(--fuente-cuerpo);
+    }
+    .filtro-btn:hover,
+    .filtro-btn.activo { background: var(--color-primario); border-color: var(--color-primario); color: white; }
+
+    /* Cronograma horizontal → cards en móvil */
+    .cronograma-tabla { width: 100%; border-collapse: collapse; }
+    .cronograma-tabla th { background: var(--color-oscuro); color: white; padding: var(--espacio-3) var(--espacio-4); text-align: left; font-size: var(--tamaño-sm); }
+    .cronograma-tabla td { padding: var(--espacio-4); border-bottom: 1px solid var(--color-borde); vertical-align: top; font-size: var(--tamaño-sm); }
+    .cronograma-tabla tr:hover td { background: var(--color-claro); }
+    .cronograma-tabla .hora-col { font-weight: 700; color: var(--color-primario); white-space: nowrap; }
+
+    @media (max-width: 768px) {
+      .cronograma-tabla { display: none; } /* Ocultar tabla en móvil */
+      .cronograma-movil  { display: block; } /* Mostrar cards en móvil */
+    }
+    @media (min-width: 769px) {
+      .cronograma-movil { display: none; } /* Ocultar cards en escritorio */
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav-cv">
+  <div class="nav-cv__inner">
+    <a href="index.html" class="nav-cv__logo"><i class="fa-solid fa-city" style="color:var(--color-secundario)"></i>Ciudad <span>Viva</span></a>
+    <ul class="nav-cv__menu">
+      <li><a href="index.html" class="nav-cv__enlace">Inicio</a></li>
+      <li><a href="agenda.html" class="nav-cv__enlace nav-cv__enlace--activo">Agenda</a></li>
+      <li><a href="lugares.html" class="nav-cv__enlace">Lugares</a></li>
+      <li><a href="galeria.html" class="nav-cv__enlace">Galería</a></li>
+      <li><a href="contacto.html" class="nav-cv__enlace">Contacto</a></li>
+      <li><a href="evento.html" class="nav-cv__enlace nav-cv__btn">Ver Eventos</a></li>
+    </ul>
+    <button class="nav-cv__toggle" id="btnToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="nav-cv__movil" id="menuMovil">
+  <a href="index.html" class="nav-cv__enlace">Inicio</a>
+  <a href="agenda.html" class="nav-cv__enlace nav-cv__enlace--activo">Agenda</a>
+  <a href="lugares.html" class="nav-cv__enlace">Lugares</a>
+  <a href="galeria.html" class="nav-cv__enlace">Galería</a>
+  <a href="contacto.html" class="nav-cv__enlace">Contacto</a>
+</nav>
+
+<!-- ENCABEZADO -->
+<section class="seccion--oscura" style="padding:var(--espacio-12) 0">
+  <div class="contenedor">
+    <h1 class="titulo-seccion" style="color:white">Agenda <span>Cultural</span></h1>
+    <p class="subtitulo">Julio · Agosto · Septiembre 2026</p>
+  </div>
+</section>
+
+<!-- FILTROS SIMULADOS -->
+<section style="background:white;border-bottom:1px solid var(--color-borde);padding:var(--espacio-4) 0">
+  <div class="contenedor">
+    <div class="filtros">
+      <button class="filtro-btn activo" onclick="filtrar('todos',this)">Todos</button>
+      <button class="filtro-btn" onclick="filtrar('teatro',this)"><i class="fa-solid fa-masks-theater"></i> Teatro</button>
+      <button class="filtro-btn" onclick="filtrar('musica',this)"><i class="fa-solid fa-music"></i> Música</button>
+      <button class="filtro-btn" onclick="filtrar('exposicion',this)"><i class="fa-solid fa-palette"></i> Arte</button>
+      <button class="filtro-btn" onclick="filtrar('taller',this)"><i class="fa-solid fa-hands-holding"></i> Talleres</button>
+      <button class="filtro-btn" onclick="filtrar('cine',this)"><i class="fa-solid fa-film"></i> Cine</button>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA VISUAL (escritorio: tabla · móvil: cards) -->
+<section class="seccion">
+  <div class="contenedor">
+    <h2 class="titulo-seccion" style="margin-bottom:var(--espacio-6)">Programación <span>semanal</span></h2>
+
+    <!-- TABLA (escritorio) -->
+    <div style="overflow-x:auto;border-radius:var(--radio-lg);box-shadow:var(--sombra-sm);margin-bottom:var(--espacio-12)">
+      <table class="cronograma-tabla">
+        <thead>
+          <tr>
+            <th>Hora</th>
+            <th>Lunes 15</th>
+            <th>Martes 16</th>
+            <th>Miércoles 17</th>
+            <th>Jueves 18</th>
+            <th>Viernes 19</th>
+            <th>Sáb 20</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="hora-col">10:00</td>
+            <td><strong>Taller de pintura</strong><br><span style="color:var(--color-muted)">Centro Cultural Norte</span></td>
+            <td>—</td>
+            <td><strong>Taller de cerámica</strong><br><span style="color:var(--color-muted)">Casa del Arte</span></td>
+            <td>—</td>
+            <td><strong>Taller de fotografía</strong><br><span style="color:var(--color-muted)">Galería Central</span></td>
+            <td><strong>Feria artesanal</strong><br><span style="color:var(--color-muted)">Parque Principal</span></td>
+          </tr>
+          <tr>
+            <td class="hora-col">15:00</td>
+            <td>—</td>
+            <td><strong>Exposición: Arte Urbano</strong><br><span style="color:var(--color-muted)">Museo Municipal</span></td>
+            <td>—</td>
+            <td><strong>Conferencia: Historia</strong><br><span style="color:var(--color-muted)">Auditorio Central</span></td>
+            <td>—</td>
+            <td><strong>Concierto Jazz</strong><br><span style="color:var(--color-muted)">Plaza Mayor</span></td>
+          </tr>
+          <tr>
+            <td class="hora-col">19:00</td>
+            <td><strong>Cine bajo las estrellas</strong><br><span style="color:var(--color-muted)">Parque Sur</span></td>
+            <td>—</td>
+            <td><strong>Ópera: La Traviata</strong><br><span style="color:var(--color-muted)">Gran Teatro Municipal</span></td>
+            <td>—</td>
+            <td><strong>Noche de comedia</strong><br><span style="color:var(--color-muted)">Teatro Joven</span></td>
+            <td><strong>Edipo Rey</strong><br><span style="color:var(--color-muted)">Teatro Nacional</span></td>
+          </tr>
+          <tr>
+            <td class="hora-col">20:30</td>
+            <td>—</td>
+            <td><strong>Orquesta Sinfónica</strong><br><span style="color:var(--color-muted)">Gran Teatro</span></td>
+            <td>—</td>
+            <td><strong>Ballet clásico</strong><br><span style="color:var(--color-muted)">Teatro Metropolitano</span></td>
+            <td><strong>Concierto de rock</strong><br><span style="color:var(--color-muted)">Anfiteatro Municipal</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CARDS (móvil) -->
+    <div class="cronograma-movil">
+      <div class="cronograma">
+        <div class="evento-linea evento-item" data-tipo="taller">
+          <span class="evento-linea__hora"><i class="fa-regular fa-clock"></i> Lun 15 · 10:00</span>
+          <h3 class="evento-linea__titulo">Taller de pintura</h3>
+          <p class="evento-linea__info"><i class="fa-solid fa-location-dot"></i> Centro Cultural Norte</p>
+        </div>
+        <div class="evento-linea evento-item" data-tipo="exposicion">
+          <span class="evento-linea__hora"><i class="fa-regular fa-clock"></i> Mar 16 · 15:00</span>
+          <h3 class="evento-linea__titulo">Exposición: Arte Urbano</h3>
+          <p class="evento-linea__info"><i class="fa-solid fa-location-dot"></i> Museo Municipal</p>
+        </div>
+        <div class="evento-linea evento-item" data-tipo="cine">
+          <span class="evento-linea__hora"><i class="fa-regular fa-clock"></i> Lun 15 · 19:00</span>
+          <h3 class="evento-linea__titulo">Cine bajo las estrellas</h3>
+          <p class="evento-linea__info"><i class="fa-solid fa-location-dot"></i> Parque Sur</p>
+        </div>
+        <div class="evento-linea evento-item" data-tipo="teatro">
+          <span class="evento-linea__hora"><i class="fa-regular fa-clock"></i> Mié 17 · 19:00</span>
+          <h3 class="evento-linea__titulo">Ópera: La Traviata</h3>
+          <p class="evento-linea__info"><i class="fa-solid fa-location-dot"></i> Gran Teatro Municipal</p>
+        </div>
+        <div class="evento-linea evento-item" data-tipo="musica">
+          <span class="evento-linea__hora"><i class="fa-regular fa-clock"></i> Mar 16 · 20:30</span>
+          <h3 class="evento-linea__titulo">Orquesta Sinfónica Municipal</h3>
+          <p class="evento-linea__info"><i class="fa-solid fa-location-dot"></i> Gran Teatro</p>
+        </div>
+        <div class="evento-linea evento-item" data-tipo="teatro">
+          <span class="evento-linea__hora"><i class="fa-regular fa-clock"></i> Sáb 20 · 20:00</span>
+          <h3 class="evento-linea__titulo">Edipo Rey</h3>
+          <p class="evento-linea__info"><i class="fa-solid fa-location-dot"></i> Teatro Nacional</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRID DE EVENTOS EN CARDS -->
+    <h2 class="titulo-seccion" style="margin-bottom:var(--espacio-6)">Todos los <span>eventos</span></h2>
+    <div class="grid-cards" id="gridEventos">
+
+      <article class="card evento-item" data-tipo="teatro">
+        <div class="card__imagen" style="background:linear-gradient(135deg,#2c3e50,#c0392b);height:180px;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-masks-theater" style="font-size:3rem;color:rgba(255,255,255,0.4)"></i>
+        </div>
+        <div class="card__cuerpo">
+          <p class="card__categoria"><i class="fa-solid fa-masks-theater"></i> Teatro</p>
+          <h3 class="card__titulo">Edipo Rey</h3>
+          <p class="card__texto">Sófocles · Compañía Nacional. Sáb 20 Jul · 8pm</p>
+        </div>
+        <div class="card__pie"><span style="font-size:var(--tamaño-xs);color:var(--color-muted)">Teatro Nacional</span><a href="evento.html" class="btn btn--primario" style="padding:6px 16px;font-size:0.75rem">Detalle</a></div>
+      </article>
+
+      <article class="card evento-item" data-tipo="exposicion">
+        <div class="card__imagen" style="background:linear-gradient(135deg,#34495e,#e67e22);height:180px;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-palette" style="font-size:3rem;color:rgba(255,255,255,0.4)"></i>
+        </div>
+        <div class="card__cuerpo">
+          <p class="card__categoria"><i class="fa-solid fa-palette"></i> Arte</p>
+          <h3 class="card__titulo">Arte Urbano Latinoamericano</h3>
+          <p class="card__texto">Muestra itinerante · Hasta 31 Jul</p>
+        </div>
+        <div class="card__pie"><span style="font-size:var(--tamaño-xs);color:var(--color-muted)">Museo Municipal</span><a href="evento.html" class="btn btn--primario" style="padding:6px 16px;font-size:0.75rem">Detalle</a></div>
+      </article>
+
+      <article class="card evento-item" data-tipo="musica">
+        <div class="card__imagen" style="background:linear-gradient(135deg,#2c3e50,#8e44ad);height:180px;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-music" style="font-size:3rem;color:rgba(255,255,255,0.4)"></i>
+        </div>
+        <div class="card__cuerpo">
+          <p class="card__categoria"><i class="fa-solid fa-music"></i> Música</p>
+          <h3 class="card__titulo">Orquesta Sinfónica — Noche de Gala</h3>
+          <p class="card__texto">Dom 21 Jul · 7pm</p>
+        </div>
+        <div class="card__pie"><span style="font-size:var(--tamaño-xs);color:var(--color-muted)">Gran Teatro</span><a href="evento.html" class="btn btn--primario" style="padding:6px 16px;font-size:0.75rem">Detalle</a></div>
+      </article>
+
+      <article class="card evento-item" data-tipo="cine">
+        <div class="card__imagen" style="background:linear-gradient(135deg,#16213e,#0f3460);height:180px;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-film" style="font-size:3rem;color:rgba(255,255,255,0.4)"></i>
+        </div>
+        <div class="card__cuerpo">
+          <p class="card__categoria"><i class="fa-solid fa-film"></i> Cine</p>
+          <h3 class="card__titulo">Cine bajo las estrellas</h3>
+          <p class="card__texto">Todos los lunes · 7pm · Entrada libre</p>
+        </div>
+        <div class="card__pie"><span style="font-size:var(--tamaño-xs);color:var(--color-muted)">Parque Sur</span><a href="evento.html" class="btn btn--primario" style="padding:6px 16px;font-size:0.75rem">Detalle</a></div>
+      </article>
+
+      <article class="card evento-item" data-tipo="taller">
+        <div class="card__imagen" style="background:linear-gradient(135deg,#1e8449,#2c3e50);height:180px;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-paintbrush" style="font-size:3rem;color:rgba(255,255,255,0.4)"></i>
+        </div>
+        <div class="card__cuerpo">
+          <p class="card__categoria"><i class="fa-solid fa-hands-holding"></i> Taller</p>
+          <h3 class="card__titulo">Taller de pintura para adultos</h3>
+          <p class="card__texto">Lunes y miércoles · 10am · Inscripción gratuita</p>
+        </div>
+        <div class="card__pie"><span style="font-size:var(--tamaño-xs);color:var(--color-muted)">Centro Cultural Norte</span><a href="evento.html" class="btn btn--primario" style="padding:6px 16px;font-size:0.75rem">Detalle</a></div>
+      </article>
+
+      <article class="card evento-item" data-tipo="musica">
+        <div class="card__imagen" style="background:linear-gradient(135deg,#873600,#e67e22);height:180px;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-guitar" style="font-size:3rem;color:rgba(255,255,255,0.4)"></i>
+        </div>
+        <div class="card__cuerpo">
+          <p class="card__categoria"><i class="fa-solid fa-music"></i> Música</p>
+          <h3 class="card__titulo">Festival de Jazz en la Plaza</h3>
+          <p class="card__texto">Sáb 20 Jul · 3pm · Entrada libre</p>
+        </div>
+        <div class="card__pie"><span style="font-size:var(--tamaño-xs);color:var(--color-muted)">Plaza Mayor</span><a href="evento.html" class="btn btn--primario" style="padding:6px 16px;font-size:0.75rem">Detalle</a></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-cv">
+  <div class="contenedor">
+    <div class="footer-cv__grid">
+      <div><div class="footer-cv__marca"><i class="fa-solid fa-city" style="color:var(--color-secundario)"></i> Ciudad Viva</div><p style="font-size:var(--tamaño-sm)">Portal cultural de la municipalidad.</p></div>
+      <div><h5>Explorar</h5><a href="agenda.html">Agenda</a><a href="evento.html">Eventos</a><a href="lugares.html">Lugares</a></div>
+      <div><h5>Participar</h5><a href="contacto.html">Convocar</a><a href="contacto.html">Boletín</a></div>
+      <div><h5>Municipal</h5><a href="#">Portal</a><a href="#">Privacidad</a></div>
+    </div>
+    <hr class="footer-cv__linea">
+    <p class="footer-cv__copy">© 2026 Ciudad Viva — Portal Cultural Municipal.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('btnToggle').addEventListener('click', () => {
+    document.getElementById('menuMovil').classList.toggle('abierto');
+  });
+
+  function filtrar(tipo, btn) {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+    btn.classList.add('activo');
+    document.querySelectorAll('.evento-item').forEach(item => {
+      item.style.display = (tipo === 'todos' || item.dataset.tipo === tipo) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

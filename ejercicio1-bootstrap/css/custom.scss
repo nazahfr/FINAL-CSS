@@ -1,0 +1,397 @@
+// ============================================
+// TechNova Summit 2026 — Estilos personalizados
+// Archivo SCSS con variables, mixins y anidación
+// ============================================
+
+// --- Variables de color ---
+$primario:    #e94560;
+$secundario:  #0f3460;
+$oscuro:      #1a1a2e;
+$acento:      #16213e;
+$claro:       #f0f4f8;
+$muted:       #8899aa;
+
+// --- Variables de tipografía ---
+$fuente-base: 'Poppins', sans-serif;
+$peso-negrita: 700;
+
+// --- Variables de espaciado ---
+$espacio-sm: 0.5rem;
+$espacio-md: 1rem;
+$espacio-lg: 2rem;
+$espacio-xl: 4rem;
+
+// --- Variables de borde ---
+$radio-sm:   6px;
+$radio-md:   12px;
+$radio-lg:   20px;
+$radio-pill: 50px;
+
+// --- Variables de sombra ---
+$sombra-sm: 0 2px 10px rgba(0,0,0,0.08);
+$sombra-md: 0 5px 20px rgba(0,0,0,0.15);
+$sombra-lg: 0 10px 40px rgba(0,0,0,0.22);
+
+// ============================================
+// Mixins
+// ============================================
+
+@mixin flex-centro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $sombra-lg;
+  }
+}
+
+@mixin boton($fondo, $texto: white) {
+  background: $fondo;
+  color: $texto;
+  border: none;
+  padding: 10px 28px;
+  border-radius: $radio-pill;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background: darken($fondo, 10%);
+    transform: translateY(-2px);
+    box-shadow: $sombra-md;
+  }
+}
+
+// ============================================
+// Base
+// ============================================
+
+body {
+  font-family: $fuente-base;
+  padding-top: 76px;
+}
+
+// ============================================
+// Navbar
+// ============================================
+
+.navbar-tn {
+  background: $oscuro !important;
+  box-shadow: $sombra-md;
+
+  .navbar-brand {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: $primario !important;
+  }
+
+  .nav-link {
+    color: rgba(255,255,255,0.85) !important;
+    font-weight: 500;
+    border-radius: $radio-sm;
+    transition: all 0.3s;
+
+    &:hover, &.active {
+      color: $primario !important;
+      background: rgba($primario, 0.12);
+    }
+  }
+
+  .btn-nav {
+    @include boton($primario);
+    padding: 7px 18px;
+    font-size: 0.9rem;
+    color: white;
+    text-decoration: none;
+    border-radius: $radio-pill;
+  }
+}
+
+.offcanvas-tn {
+  background: $oscuro;
+
+  .offcanvas-title { color: $primario; font-weight: 700; }
+  .btn-close { filter: invert(1); }
+
+  .nav-link {
+    color: rgba(255,255,255,0.85) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0.75rem 1rem;
+    &:hover { color: $primario !important; }
+  }
+}
+
+// ============================================
+// Hero
+// ============================================
+
+.hero {
+  background: linear-gradient(135deg, $oscuro 0%, $acento 50%, $secundario 100%);
+  min-height: 90vh;
+  @include flex-centro;
+  color: white;
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba($primario, 0.15);
+    color: $primario;
+    border: 1px solid $primario;
+    padding: 5px 16px;
+    border-radius: $radio-pill;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: $espacio-md;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    .resaltado { color: $primario; }
+  }
+
+  .lead { color: rgba(255,255,255,0.8); }
+
+  .btn-hero-primario  { @include boton($primario); color: white; text-decoration: none; }
+  .btn-hero-secundario {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.4);
+    padding: 10px 28px;
+    border-radius: $radio-pill;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-decoration: none;
+    &:hover { border-color: white; background: rgba(255,255,255,0.1); }
+  }
+}
+
+// ============================================
+// Contador regresivo
+// ============================================
+
+.countdown {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: $radio-md;
+  padding: $espacio-lg;
+  backdrop-filter: blur(8px);
+  text-align: center;
+
+  .cnt-numero {
+    font-size: 3rem;
+    font-weight: 800;
+    color: $primario;
+    display: block;
+    line-height: 1;
+  }
+
+  .cnt-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.55);
+  }
+}
+
+// ============================================
+// Secciones
+// ============================================
+
+.seccion-titulo {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: $oscuro;
+  span { color: $primario; }
+}
+
+.seccion-oscura {
+  background: $oscuro;
+  color: white;
+  .seccion-titulo { color: white; }
+}
+
+.seccion-gris { background: $claro; }
+
+// ============================================
+// Estadísticas
+// ============================================
+
+.stat {
+  text-align: center;
+  padding: 1.5rem;
+
+  .stat-num {
+    font-size: 3rem;
+    font-weight: 800;
+    color: $primario;
+    display: block;
+  }
+
+  .stat-label { color: rgba(255,255,255,0.7); }
+}
+
+// ============================================
+// Cards
+// ============================================
+
+.card-tn {
+  border: none;
+  border-radius: $radio-md;
+  overflow: hidden;
+  @include hover-card;
+  box-shadow: $sombra-sm;
+}
+
+.card-ponente {
+  @include hover-card;
+  border: none;
+  border-radius: $radio-md;
+  overflow: hidden;
+  text-align: center;
+
+  img { height: 200px; object-fit: cover; width: 100%; }
+
+  .rol {
+    color: $primario;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.card-sesion {
+  border-left: 4px solid $primario;
+  border-radius: $radio-sm;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  @include hover-card;
+  box-shadow: $sombra-sm;
+
+  .hora {
+    font-size: 0.82rem;
+    color: $muted;
+    font-weight: 600;
+  }
+
+  .tag {
+    background: rgba($primario,0.1);
+    color: $primario;
+    padding: 2px 10px;
+    border-radius: $radio-pill;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+}
+
+.card-precio {
+  border: 2px solid #dee2e6;
+  border-radius: $radio-md;
+  padding: 2rem;
+  text-align: center;
+  @include hover-card;
+  position: relative;
+
+  &.destacado {
+    border-color: $primario;
+    background: linear-gradient(135deg, $oscuro, $secundario);
+    color: white;
+    .precio { color: $primario; }
+  }
+
+  .badge-popular {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: $primario;
+    color: white;
+    padding: 3px 14px;
+    border-radius: $radio-pill;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .precio {
+    font-size: 3rem;
+    font-weight: 800;
+    color: $secundario;
+    sup { font-size: 1.4rem; vertical-align: super; }
+  }
+}
+
+// ============================================
+// Botones
+// ============================================
+
+.btn-tn-primario  { @include boton($primario);    color: white; }
+.btn-tn-outline {
+  background: transparent;
+  color: $primario;
+  border: 2px solid $primario;
+  padding: 8px 24px;
+  border-radius: $radio-pill;
+  font-weight: 600;
+  transition: all 0.3s;
+  &:hover { background: $primario; color: white; transform: translateY(-2px); }
+}
+
+// ============================================
+// Footer
+// ============================================
+
+.footer-tn {
+  background: $oscuro;
+  color: rgba(255,255,255,0.7);
+  padding: 3rem 0 1.5rem;
+
+  .footer-marca { font-size: 1.5rem; font-weight: 800; color: $primario; }
+  h5 { color: white; font-weight: 700; margin-bottom: 1rem; }
+
+  a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.3s;
+    &:hover { color: $primario; }
+  }
+
+  hr { border-color: rgba(255,255,255,0.1); }
+}
+
+// ============================================
+// Animaciones
+// ============================================
+
+@keyframes entrarArriba {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulso {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.05); }
+}
+
+.anim-entrada { animation: entrarArriba 0.6s ease both; }
+.anim-d1 { animation-delay: 0.1s; }
+.anim-d2 { animation-delay: 0.25s; }
+.anim-d3 { animation-delay: 0.4s; }
+
+// ============================================
+// Responsive
+// ============================================
+
+@media (max-width: 768px) {
+  .hero { min-height: 70vh; text-align: center; }
+  .countdown .cnt-numero { font-size: 2rem; }
+  .seccion-titulo { font-size: 1.7rem; }
+  .card-sesion { border-left-width: 3px; }
+}

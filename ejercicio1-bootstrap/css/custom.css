@@ -1,0 +1,99 @@
+/* =============================================
+   TechNova Summit 2026 — CSS compilado desde SCSS
+   ============================================= */
+
+/* --- Base --- */
+body { font-family: 'Poppins', sans-serif; padding-top: 76px; }
+
+/* --- Navbar --- */
+.navbar-tn { background: #1a1a2e !important; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+.navbar-tn .navbar-brand { font-size: 1.6rem; font-weight: 800; color: #e94560 !important; }
+.navbar-tn .nav-link { color: rgba(255,255,255,0.85) !important; font-weight: 500; border-radius: 6px; transition: all 0.3s; }
+.navbar-tn .nav-link:hover, .navbar-tn .nav-link.active { color: #e94560 !important; background: rgba(233,69,96,0.12); }
+.navbar-tn .btn-nav { background: #e94560; color: white; border: none; padding: 7px 18px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+.navbar-tn .btn-nav:hover { background: #c73652; transform: translateY(-2px); }
+
+.offcanvas-tn { background: #1a1a2e; }
+.offcanvas-tn .offcanvas-title { color: #e94560; font-weight: 700; }
+.offcanvas-tn .btn-close { filter: invert(1); }
+.offcanvas-tn .nav-link { color: rgba(255,255,255,0.85) !important; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0.75rem 1rem; }
+.offcanvas-tn .nav-link:hover { color: #e94560 !important; }
+
+/* --- Hero --- */
+.hero { background: linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); min-height: 90vh; display: flex; align-items: center; justify-content: center; color: white; }
+.hero .hero-badge { display: inline-block; background: rgba(233,69,96,0.15); color: #e94560; border: 1px solid #e94560; padding: 5px 16px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem; }
+.hero h1 { font-size: clamp(2.2rem,6vw,4.5rem); font-weight: 800; line-height: 1.15; }
+.hero h1 .resaltado { color: #e94560; }
+.hero .lead { color: rgba(255,255,255,0.8); }
+.btn-hero-primario { background: #e94560; color: white; border: none; padding: 10px 28px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+.btn-hero-primario:hover { background: #c73652; transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0,0,0,0.15); color: white; }
+.btn-hero-secundario { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); padding: 10px 28px; border-radius: 50px; font-weight: 600; transition: all 0.3s; text-decoration: none; display: inline-block; }
+.btn-hero-secundario:hover { border-color: white; background: rgba(255,255,255,0.1); color: white; }
+
+/* --- Contador --- */
+.countdown { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; backdrop-filter: blur(8px); text-align: center; }
+.countdown .cnt-numero { font-size: 3rem; font-weight: 800; color: #e94560; display: block; line-height: 1; }
+.countdown .cnt-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.55); }
+
+/* --- Secciones --- */
+.seccion-titulo { font-size: 2.2rem; font-weight: 800; color: #1a1a2e; }
+.seccion-titulo span { color: #e94560; }
+.seccion-oscura { background: #1a1a2e; color: white; }
+.seccion-oscura .seccion-titulo { color: white; }
+.seccion-gris { background: #f0f4f8; }
+
+/* --- Estadísticas --- */
+.stat { text-align: center; padding: 1.5rem; }
+.stat .stat-num { font-size: 3rem; font-weight: 800; color: #e94560; display: block; }
+.stat .stat-label { color: rgba(255,255,255,0.7); }
+
+/* --- Cards --- */
+.card-tn { border: none; border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+.card-tn:hover { transform: translateY(-6px); box-shadow: 0 10px 40px rgba(0,0,0,0.22); }
+
+.card-ponente { border: none; border-radius: 12px; overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card-ponente:hover { transform: translateY(-6px); box-shadow: 0 10px 40px rgba(0,0,0,0.22); }
+.card-ponente img { height: 200px; object-fit: cover; width: 100%; }
+.card-ponente .rol { color: #e94560; font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.card-sesion { border-left: 4px solid #e94560; border-radius: 6px; padding: 1.2rem; margin-bottom: 1rem; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.08); background: white; }
+.card-sesion:hover { transform: translateY(-6px); box-shadow: 0 10px 40px rgba(0,0,0,0.22); }
+.card-sesion .hora { font-size: 0.82rem; color: #8899aa; font-weight: 600; }
+.card-sesion .tag { background: rgba(233,69,96,0.1); color: #e94560; padding: 2px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+
+.card-precio { border: 2px solid #dee2e6; border-radius: 12px; padding: 2rem; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; }
+.card-precio:hover { transform: translateY(-6px); box-shadow: 0 10px 40px rgba(0,0,0,0.22); }
+.card-precio.destacado { border-color: #e94560; background: linear-gradient(135deg,#1a1a2e,#0f3460); color: white; }
+.card-precio.destacado .precio { color: #e94560; }
+.card-precio .badge-popular { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #e94560; color: white; padding: 3px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
+.card-precio .precio { font-size: 3rem; font-weight: 800; color: #0f3460; }
+.card-precio .precio sup { font-size: 1.4rem; vertical-align: super; }
+
+/* --- Botones --- */
+.btn-tn-primario { background: #e94560; color: white; border: none; padding: 10px 28px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+.btn-tn-primario:hover { background: #c73652; transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0,0,0,0.15); color: white; }
+.btn-tn-outline { background: transparent; color: #e94560; border: 2px solid #e94560; padding: 8px 24px; border-radius: 50px; font-weight: 600; transition: all 0.3s; }
+.btn-tn-outline:hover { background: #e94560; color: white; transform: translateY(-2px); }
+
+/* --- Footer --- */
+.footer-tn { background: #1a1a2e; color: rgba(255,255,255,0.7); padding: 3rem 0 1.5rem; }
+.footer-tn .footer-marca { font-size: 1.5rem; font-weight: 800; color: #e94560; }
+.footer-tn h5 { color: white; font-weight: 700; margin-bottom: 1rem; }
+.footer-tn a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s; }
+.footer-tn a:hover { color: #e94560; }
+.footer-tn hr { border-color: rgba(255,255,255,0.1); }
+
+/* --- Animaciones --- */
+@keyframes entrarArriba { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulso { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+.anim-entrada { animation: entrarArriba 0.6s ease both; }
+.anim-d1 { animation-delay: 0.1s; }
+.anim-d2 { animation-delay: 0.25s; }
+.anim-d3 { animation-delay: 0.4s; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .hero { min-height: 70vh; text-align: center; }
+  .countdown .cnt-numero { font-size: 2rem; }
+  .seccion-titulo { font-size: 1.7rem; }
+}

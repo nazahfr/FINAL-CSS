@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicio — ReUse Market</title>
+  <meta name="description" content="ReUse Market: compra, vende e intercambia productos reutilizados. Economía circular sostenible.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            verde:    { 50:'#f0fdf4', 100:'#dcfce7', 500:'#22c55e', 600:'#16a34a', 700:'#15803d', 800:'#166534', 900:'#14532d' },
+            eco:      { DEFAULT:'#2d6a4f', light:'#40916c', dark:'#1b4332' },
+            tierra:   { DEFAULT:'#6b4226', light:'#a0522d' },
+            crema:    { DEFAULT:'#fdfcf7', dark:'#f5f0e8' },
+          },
+          fontFamily: { sans: ['Inter','sans-serif'] },
+          spacing: { '18':'4.5rem', '22':'5.5rem' },
+          borderRadius: { '4xl':'2rem' },
+          transitionDuration: { '400':'400ms' },
+        }
+      }
+    }
+  </script>
+  <style>
+    .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+    .btn-eco { @apply bg-eco text-white font-semibold px-5 py-2.5 rounded-full transition-all duration-300; }
+    .chip { display:inline-flex;align-items:center;gap:4px;background:#dcfce7;color:#166534;padding:4px 12px;border-radius:50px;font-size:0.78rem;font-weight:600; }
+    .badge-estado { padding:2px 10px;border-radius:50px;font-size:0.72rem;font-weight:700;text-transform:uppercase; }
+    .badge-nuevo { background:#dcfce7;color:#166534; }
+    .badge-usado { background:#fef9c3;color:#854d0e; }
+    .badge-reacondicionado { background:#dbeafe;color:#1e40af; }
+  </style>
+</head>
+<body class="font-sans bg-crema text-gray-800">
+
+<!-- NAVBAR -->
+<nav class="bg-eco-dark text-white sticky top-0 z-50 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="index.html" class="text-xl font-bold flex items-center gap-2">
+      <span class="text-verde-500 text-2xl">♻</span> ReUse Market
+    </a>
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <a href="index.html" class="text-verde-400 hover:text-verde-300 transition-colors">Inicio</a>
+      <a href="catalogo.html" class="text-white/80 hover:text-verde-400 transition-colors">Catálogo</a>
+      <a href="vendedor.html" class="text-white/80 hover:text-verde-400 transition-colors">Vendedores</a>
+      <a href="carrito.html" class="text-white/80 hover:text-verde-400 transition-colors">Carrito</a>
+      <a href="publicar.html" class="bg-verde-600 hover:bg-verde-500 text-white px-4 py-2 rounded-full transition-colors font-semibold text-sm">+ Publicar</a>
+    </div>
+    <!-- Botón móvil -->
+    <button id="btnMenu" class="md:hidden text-white" onclick="document.getElementById('menuMovil').classList.toggle('hidden')">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <!-- Menú móvil -->
+  <div id="menuMovil" class="hidden md:hidden bg-eco-dark border-t border-white/10 px-4 pb-4">
+    <div class="flex flex-col gap-3 pt-3 text-sm font-medium">
+      <a href="index.html" class="text-verde-400">Inicio</a>
+      <a href="catalogo.html" class="text-white/80 hover:text-verde-400">Catálogo</a>
+      <a href="vendedor.html" class="text-white/80 hover:text-verde-400">Vendedores</a>
+      <a href="carrito.html" class="text-white/80 hover:text-verde-400">Carrito</a>
+      <a href="publicar.html" class="bg-verde-600 text-white px-4 py-2 rounded-full text-center font-semibold">+ Publicar</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="bg-gradient-to-br from-eco-dark via-eco to-eco-light text-white py-20">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="chip bg-verde-900/50 text-verde-300 mb-4 inline-block">🌿 Economía Circular</span>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-5">
+          Dale una<br><span class="text-verde-400">segunda vida</span><br>a lo que amas
+        </h1>
+        <p class="text-white/75 text-lg mb-8">Compra, vende e intercambia productos reutilizados. Juntos reducimos el desperdicio y cuidamos el planeta.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="catalogo.html" class="bg-verde-500 hover:bg-verde-400 text-white font-semibold px-7 py-3 rounded-full transition-all duration-300 hover:-translate-y-1 shadow-lg">Ver catálogo</a>
+          <a href="publicar.html" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3 rounded-full border border-white/30 transition-all duration-300 hover:-translate-y-1">Publicar gratis</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-white/10 rounded-3xl p-5 text-center backdrop-blur-sm">
+          <div class="text-4xl font-extrabold text-verde-400">12K+</div>
+          <div class="text-white/70 text-sm mt-1">Productos</div>
+        </div>
+        <div class="bg-white/10 rounded-3xl p-5 text-center backdrop-blur-sm">
+          <div class="text-4xl font-extrabold text-verde-400">5K+</div>
+          <div class="text-white/70 text-sm mt-1">Vendedores</div>
+        </div>
+        <div class="bg-white/10 rounded-3xl p-5 text-center backdrop-blur-sm">
+          <div class="text-4xl font-extrabold text-verde-400">98%</div>
+          <div class="text-white/70 text-sm mt-1">Satisfacción</div>
+        </div>
+        <div class="bg-white/10 rounded-3xl p-5 text-center backdrop-blur-sm">
+          <div class="text-4xl font-extrabold text-verde-400">3T</div>
+          <div class="text-white/70 text-sm mt-1">CO₂ ahorrado</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORÍAS -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-extrabold text-center mb-2 text-gray-900">Explora por <span class="text-eco">categoría</span></h2>
+    <p class="text-center text-gray-500 mb-10">Encuentra exactamente lo que buscas</p>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <a href="catalogo.html" class="flex flex-col items-center gap-2 p-4 bg-verde-50 hover:bg-verde-100 rounded-2xl transition-all duration-300 hover:-translate-y-1 group">
+        <span class="text-3xl">📱</span>
+        <span class="text-sm font-semibold text-eco group-hover:text-eco-dark">Tecnología</span>
+      </a>
+      <a href="catalogo.html" class="flex flex-col items-center gap-2 p-4 bg-verde-50 hover:bg-verde-100 rounded-2xl transition-all duration-300 hover:-translate-y-1 group">
+        <span class="text-3xl">👗</span>
+        <span class="text-sm font-semibold text-eco group-hover:text-eco-dark">Ropa</span>
+      </a>
+      <a href="catalogo.html" class="flex flex-col items-center gap-2 p-4 bg-verde-50 hover:bg-verde-100 rounded-2xl transition-all duration-300 hover:-translate-y-1 group">
+        <span class="text-3xl">📚</span>
+        <span class="text-sm font-semibold text-eco group-hover:text-eco-dark">Libros</span>
+      </a>
+      <a href="catalogo.html" class="flex flex-col items-center gap-2 p-4 bg-verde-50 hover:bg-verde-100 rounded-2xl transition-all duration-300 hover:-translate-y-1 group">
+        <span class="text-3xl">🪑</span>
+        <span class="text-sm font-semibold text-eco group-hover:text-eco-dark">Muebles</span>
+      </a>
+      <a href="catalogo.html" class="flex flex-col items-center gap-2 p-4 bg-verde-50 hover:bg-verde-100 rounded-2xl transition-all duration-300 hover:-translate-y-1 group">
+        <span class="text-3xl">🎮</span>
+        <span class="text-sm font-semibold text-eco group-hover:text-eco-dark">Juegos</span>
+      </a>
+      <a href="catalogo.html" class="flex flex-col items-center gap-2 p-4 bg-verde-50 hover:bg-verde-100 rounded-2xl transition-all duration-300 hover:-translate-y-1 group">
+        <span class="text-3xl">🏠</span>
+        <span class="text-sm font-semibold text-eco group-hover:text-eco-dark">Hogar</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS DESTACADOS -->
+<section class="py-16 bg-crema">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-extrabold text-center mb-2 text-gray-900">Productos <span class="text-eco">destacados</span></h2>
+    <p class="text-center text-gray-500 mb-10">Los más vistos esta semana</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+      <!-- Tarjeta producto -->
+      <a href="producto.html" class="bg-white rounded-3xl overflow-hidden shadow-sm card-hover block">
+        <div class="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
+          <span class="text-6xl">📱</span>
+          <span class="badge-estado badge-reacondicionado absolute top-3 left-3">Reacondicionado</span>
+        </div>
+        <div class="p-4">
+          <p class="text-xs text-gray-400 mb-1">Tecnología</p>
+          <h3 class="font-bold text-gray-900 text-sm mb-1 leading-tight">iPhone 13 128GB — Midnight</h3>
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-eco font-extrabold text-lg">S/ 1,200</span>
+            <span class="text-xs text-gray-400">⭐ 4.9</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="producto.html" class="bg-white rounded-3xl overflow-hidden shadow-sm card-hover block">
+        <div class="h-48 bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center relative">
+          <span class="text-6xl">🪑</span>
+          <span class="badge-estado badge-usado absolute top-3 left-3">Usado</span>
+        </div>
+        <div class="p-4">
+          <p class="text-xs text-gray-400 mb-1">Muebles</p>
+          <h3 class="font-bold text-gray-900 text-sm mb-1 leading-tight">Silla ergonómica Herman Miller</h3>
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-eco font-extrabold text-lg">S/ 850</span>
+            <span class="text-xs text-gray-400">⭐ 4.7</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="producto.html" class="bg-white rounded-3xl overflow-hidden shadow-sm card-hover block">
+        <div class="h-48 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center relative">
+          <span class="text-6xl">📚</span>
+          <span class="badge-estado badge-nuevo absolute top-3 left-3">Nuevo</span>
+        </div>
+        <div class="p-4">
+          <p class="text-xs text-gray-400 mb-1">Libros</p>
+          <h3 class="font-bold text-gray-900 text-sm mb-1 leading-tight">Pack: Diseño UX — 5 libros</h3>
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-eco font-extrabold text-lg">S/ 120</span>
+            <span class="text-xs text-gray-400">⭐ 5.0</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="producto.html" class="bg-white rounded-3xl overflow-hidden shadow-sm card-hover block">
+        <div class="h-48 bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center relative">
+          <span class="text-6xl">🎮</span>
+          <span class="badge-estado badge-usado absolute top-3 left-3">Usado</span>
+        </div>
+        <div class="p-4">
+          <p class="text-xs text-gray-400 mb-1">Juegos</p>
+          <h3 class="font-bold text-gray-900 text-sm mb-1 leading-tight">PlayStation 5 + 2 controles</h3>
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-eco font-extrabold text-lg">S/ 2,100</span>
+            <span class="text-xs text-gray-400">⭐ 4.8</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+    <div class="text-center mt-8">
+      <a href="catalogo.html" class="bg-eco hover:bg-eco-dark text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:-translate-y-1 inline-block">Ver todos los productos</a>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS AMBIENTALES -->
+<section class="py-16 bg-eco-dark text-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-extrabold text-center mb-12">Nuestro impacto <span class="text-verde-400">ambiental</span></h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-sm hover:bg-white/20 transition-all duration-400">
+        <div class="text-5xl mb-4">🌍</div>
+        <div class="text-4xl font-extrabold text-verde-400 mb-2">3 toneladas</div>
+        <p class="text-white/70">de CO₂ evitadas cada mes gracias a nuestros usuarios</p>
+      </div>
+      <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-sm hover:bg-white/20 transition-all duration-400">
+        <div class="text-5xl mb-4">♻️</div>
+        <div class="text-4xl font-extrabold text-verde-400 mb-2">45,000</div>
+        <p class="text-white/70">productos reutilizados que no terminaron en la basura</p>
+      </div>
+      <div class="bg-white/10 rounded-3xl p-8 backdrop-blur-sm hover:bg-white/20 transition-all duration-400">
+        <div class="text-5xl mb-4">💧</div>
+        <div class="text-4xl font-extrabold text-verde-400 mb-2">500K litros</div>
+        <p class="text-white/70">de agua ahorrada al evitar la producción de nuevos artículos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-extrabold text-center mb-10 text-gray-900">Lo que dicen nuestros <span class="text-eco">usuarios</span></h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-verde-50 rounded-3xl p-6 card-hover">
+        <p class="text-gray-600 italic mb-4">"Vendí mi laptop en 2 días y la compradora quedó feliz. ¡Proceso super sencillo!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-eco flex items-center justify-center text-white font-bold">M</div>
+          <div><p class="font-semibold text-sm">María G.</p><p class="text-xs text-gray-400">⭐⭐⭐⭐⭐</p></div>
+        </div>
+      </div>
+      <div class="bg-verde-50 rounded-3xl p-6 card-hover">
+        <p class="text-gray-600 italic mb-4">"Encontré muebles de calidad a precios increíbles. ReUse Market es mi primera opción ahora."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-eco-light flex items-center justify-center text-white font-bold">C</div>
+          <div><p class="font-semibold text-sm">Carlos R.</p><p class="text-xs text-gray-400">⭐⭐⭐⭐⭐</p></div>
+        </div>
+      </div>
+      <div class="bg-verde-50 rounded-3xl p-6 card-hover">
+        <p class="text-gray-600 italic mb-4">"Me encanta saber que mis compras ayudan al medio ambiente. Plataforma confiable y segura."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-verde-600 flex items-center justify-center text-white font-bold">A</div>
+          <div><p class="font-semibold text-sm">Ana L.</p><p class="text-xs text-gray-400">⭐⭐⭐⭐⭐</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-eco-dark text-white py-12">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+      <div class="col-span-2 md:col-span-1">
+        <div class="text-xl font-extrabold text-verde-400 mb-3">♻ ReUse Market</div>
+        <p class="text-white/60 text-sm">Marketplace de economía circular. Compra, vende e intercambia de forma sostenible.</p>
+      </div>
+      <div>
+        <h6 class="font-bold mb-3">Explorar</h6>
+        <ul class="space-y-2 text-sm text-white/60">
+          <li><a href="catalogo.html" class="hover:text-verde-400 transition-colors">Catálogo</a></li>
+          <li><a href="producto.html" class="hover:text-verde-400 transition-colors">Producto</a></li>
+          <li><a href="vendedor.html" class="hover:text-verde-400 transition-colors">Vendedores</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="font-bold mb-3">Cuenta</h6>
+        <ul class="space-y-2 text-sm text-white/60">
+          <li><a href="carrito.html" class="hover:text-verde-400 transition-colors">Carrito</a></li>
+          <li><a href="publicar.html" class="hover:text-verde-400 transition-colors">Publicar</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="font-bold mb-3">Ayuda</h6>
+        <ul class="space-y-2 text-sm text-white/60">
+          <li><a href="publicar.html" class="hover:text-verde-400 transition-colors">FAQ</a></li>
+          <li><a href="#" class="hover:text-verde-400 transition-colors">Términos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 text-center text-sm text-white/50">
+      © 2026 ReUse Market. Todos los derechos reservados. 🌿 Hecho con amor por el planeta.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mis Citas — Salud 360</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav-salud z-depth-2">
+  <div class="nav-wrapper container">
+    <a href="index.html" class="brand-logo"><i class="material-icons left">local_hospital</i>Salud 360</a>
+    <a href="#" data-target="sidenavPrincipal" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="especialidades.html">Especialidades</a></li>
+      <li><a href="directorio.html">Médicos</a></li>
+      <li><a href="reserva.html">Reservar Cita</a></li>
+      <li><a href="mis-citas.html" class="active">Mis Citas</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+<ul class="sidenav" id="sidenavPrincipal">
+  <li><div class="sidenav-header"><span class="sidenav-brand">Salud 360</span></div></li>
+  <li><a href="index.html"><i class="material-icons">home</i>Inicio</a></li>
+  <li><a href="especialidades.html"><i class="material-icons">medical_services</i>Especialidades</a></li>
+  <li><a href="directorio.html"><i class="material-icons">people</i>Médicos</a></li>
+  <li><a href="reserva.html"><i class="material-icons">event</i>Reservar Cita</a></li>
+  <li><a href="mis-citas.html"><i class="material-icons">assignment</i>Mis Citas</a></li>
+  <li><a href="contacto.html"><i class="material-icons">contact_mail</i>Contacto</a></li>
+</ul>
+
+<!-- ENCABEZADO -->
+<div class="seccion-oscura" style="padding:40px 0">
+  <div class="container">
+    <h1 class="white-text" style="font-weight:800">Mis <span style="color:var(--azul-palo)">Citas</span></h1>
+    <p style="color:rgba(255,255,255,0.7)">Historial y próximas consultas médicas</p>
+  </div>
+</div>
+
+<!-- PRÓXIMA CITA DESTACADA -->
+<div class="seccion-gris" style="padding:24px 0">
+  <div class="container">
+    <div class="card z-depth-2" style="border-radius:16px;border-left:5px solid var(--azul)">
+      <div class="card-content">
+        <div class="row valign-wrapper" style="margin-bottom:0">
+          <div class="col s12 m1 center">
+            <i class="material-icons" style="font-size:2.5rem;color:var(--azul)">event_available</i>
+          </div>
+          <div class="col s12 m7">
+            <p style="color:var(--azul);font-weight:700;margin:0;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.5px">Próxima cita</p>
+            <h5 style="margin:4px 0;font-weight:700">Dr. Alejandro Soto — Cardiología</h5>
+            <p style="margin:0;color:#666"><i class="material-icons tiny">schedule</i> Miércoles 20 de agosto, 2026 · 08:00 a.m.</p>
+            <p style="margin:4px 0;color:#666"><i class="material-icons tiny">location_on</i> Sede Miraflores — Av. Larco 201</p>
+          </div>
+          <div class="col s12 m4 right-align">
+            <span class="badge-proxima">Confirmada</span>
+            <div style="margin-top:12px">
+              <a href="#!" class="btn-small btn-azul white-text waves-effect" style="border-radius:50px;margin-right:6px">
+                <i class="material-icons left tiny">videocam</i>Unirse
+              </a>
+              <a href="#!" class="btn-small waves-effect btn-flat" style="border-radius:50px">Cancelar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLA DE CITAS -->
+<div class="container" style="padding:30px 0">
+
+  <!-- Preloader de ejemplo -->
+  <div id="preloader" style="text-align:center;padding:20px;display:none">
+    <div class="preloader-wrapper active">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left"><div class="circle"></div></div>
+        <div class="gap-patch"><div class="circle"></div></div>
+        <div class="circle-clipper right"><div class="circle"></div></div>
+      </div>
+    </div>
+    <p style="color:var(--azul)">Cargando citas...</p>
+  </div>
+
+  <h5 style="font-weight:700;color:var(--oscuro);margin-bottom:20px">
+    <i class="material-icons left" style="color:var(--azul)">list</i>Todas mis citas
+  </h5>
+
+  <!-- Filtros de estado -->
+  <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+    <button onclick="filtrarCitas('todas', this)" class="btn-small btn-azul white-text waves-effect" style="border-radius:50px">Todas</button>
+    <button onclick="filtrarCitas('proxima', this)" class="btn-small waves-effect" style="border-radius:50px;background:#e3f2fd;color:var(--azul)">Próximas</button>
+    <button onclick="filtrarCitas('completada', this)" class="btn-small waves-effect" style="border-radius:50px;background:#e8f5e9;color:#1b5e20">Completadas</button>
+    <button onclick="filtrarCitas('cancelada', this)" class="btn-small waves-effect" style="border-radius:50px;background:#ffebee;color:#c62828">Canceladas</button>
+  </div>
+
+  <!-- Tabla responsive -->
+  <div class="card z-depth-1" style="border-radius:16px;overflow:hidden">
+    <table class="tabla-citas responsive-table highlight" id="tablaCitas">
+      <thead>
+        <tr>
+          <th>Médico / Especialidad</th>
+          <th>Fecha y Hora</th>
+          <th>Sede</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="cita-fila" data-estado="proxima">
+          <td>
+            <strong>Dr. Alejandro Soto</strong><br>
+            <span style="color:var(--azul);font-size:0.82rem;font-weight:600">Cardiología</span>
+          </td>
+          <td>20 ago 2026<br><span class="grey-text">08:00 a.m.</span></td>
+          <td>Miraflores</td>
+          <td><span class="badge-proxima">Próxima</span></td>
+          <td>
+            <a href="#!" class="btn-flat btn-small waves-effect" style="color:var(--azul)"><i class="material-icons tiny">edit</i></a>
+            <a href="#!" class="btn-flat btn-small waves-effect" style="color:var(--error)"><i class="material-icons tiny">cancel</i></a>
+          </td>
+        </tr>
+        <tr class="cita-fila" data-estado="completada">
+          <td>
+            <strong>Dra. Patricia Ruiz</strong><br>
+            <span style="color:var(--azul);font-size:0.82rem;font-weight:600">Neurología</span>
+          </td>
+          <td>05 jul 2026<br><span class="grey-text">10:30 a.m.</span></td>
+          <td>San Isidro</td>
+          <td><span class="badge-completada">Completada</span></td>
+          <td>
+            <a href="#!" class="btn-flat btn-small waves-effect" style="color:var(--azul)"><i class="material-icons tiny">receipt</i></a>
+            <a href="reserva.html" class="btn-flat btn-small waves-effect" style="color:var(--exito)"><i class="material-icons tiny">refresh</i></a>
+          </td>
+        </tr>
+        <tr class="cita-fila" data-estado="completada">
+          <td>
+            <strong>Dr. José Quispe</strong><br>
+            <span style="color:var(--azul);font-size:0.82rem;font-weight:600">Pediatría</span>
+          </td>
+          <td>12 jun 2026<br><span class="grey-text">09:00 a.m.</span></td>
+          <td>La Molina</td>
+          <td><span class="badge-completada">Completada</span></td>
+          <td>
+            <a href="#!" class="btn-flat btn-small waves-effect" style="color:var(--azul)"><i class="material-icons tiny">receipt</i></a>
+            <a href="reserva.html" class="btn-flat btn-small waves-effect" style="color:var(--exito)"><i class="material-icons tiny">refresh</i></a>
+          </td>
+        </tr>
+        <tr class="cita-fila" data-estado="cancelada">
+          <td>
+            <strong>Dra. Carmen Flores</strong><br>
+            <span style="color:var(--azul);font-size:0.82rem;font-weight:600">Ginecología</span>
+          </td>
+          <td>28 may 2026<br><span class="grey-text">11:00 a.m.</span></td>
+          <td>Miraflores</td>
+          <td><span class="badge-cancelada">Cancelada</span></td>
+          <td>
+            <a href="reserva.html" class="btn-flat btn-small waves-effect" style="color:var(--exito)"><i class="material-icons tiny">refresh</i> Reagendar</a>
+          </td>
+        </tr>
+        <tr class="cita-fila" data-estado="completada">
+          <td>
+            <strong>Dr. Ricardo Campos</strong><br>
+            <span style="color:var(--azul);font-size:0.82rem;font-weight:600">Traumatología</span>
+          </td>
+          <td>10 mar 2026<br><span class="grey-text">03:00 p.m.</span></td>
+          <td>San Isidro</td>
+          <td><span class="badge-completada">Completada</span></td>
+          <td>
+            <a href="#!" class="btn-flat btn-small waves-effect" style="color:var(--azul)"><i class="material-icons tiny">receipt</i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Paginación -->
+  <ul class="pagination" style="margin-top:20px">
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active" style="background:var(--azul)"><a href="#!">1</a></li>
+    <li class="waves-effect"><a href="#!">2</a></li>
+    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+
+  <!-- Botón nueva cita -->
+  <div class="center" style="margin-top:20px">
+    <a href="reserva.html" class="btn-large btn-azul white-text waves-effect z-depth-2" style="border-radius:50px">
+      <i class="material-icons left">add_circle</i>Reservar nueva cita
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer-salud">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m4"><h5 class="footer-titulo">Salud 360</h5><p>Red de centros de salud comprometida con tu bienestar.</p></div>
+      <div class="col s6 m2"><h6 class="footer-titulo">Servicios</h6><ul><li><a href="especialidades.html">Especialidades</a></li><li><a href="directorio.html">Médicos</a></li><li><a href="reserva.html">Citas</a></li></ul></div>
+      <div class="col s6 m2"><h6 class="footer-titulo">Cuenta</h6><ul><li><a href="mis-citas.html">Mis Citas</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div class="col s12 m4"><h6 class="footer-titulo">Contacto</h6><p><i class="material-icons tiny">phone</i> +51 (1) 234-5000<br><i class="material-icons tiny">email</i> info@salud360.pe</p></div>
+    </div>
+    <div class="divider" style="background:rgba(255,255,255,0.1)"></div>
+    <p class="center" style="padding-top:16px;font-size:0.85rem">© 2026 Salud 360. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
+  });
+
+  function filtrarCitas(estado, btn) {
+    document.querySelectorAll('.cita-fila').forEach(fila => {
+      fila.style.display = (estado === 'todas' || fila.dataset.estado === estado) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

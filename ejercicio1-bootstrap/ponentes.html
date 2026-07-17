@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ponentes — TechNova Summit 2026</title>
+  <meta name="description" content="Conoce a los ponentes del TechNova Summit 2026: expertos internacionales en IA, blockchain y más.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+  <style>
+    .filtro-btn { border:2px solid #dee2e6; background:white; padding:6px 18px; border-radius:50px; cursor:pointer; transition:all 0.3s; font-weight:500; }
+    .filtro-btn.activo, .filtro-btn:hover { background:#e94560; border-color:#e94560; color:white; }
+    .card-ponente { cursor:pointer; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-tn fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">TechNova</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuMovil">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="agenda.html">Agenda</a></li>
+        <li class="nav-item"><a class="nav-link active" href="ponentes.html">Ponentes</a></li>
+        <li class="nav-item"><a class="nav-link" href="entradas.html">Entradas</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        <li class="nav-item ms-2"><a class="btn-nav" href="inscripcion.html">Inscribirse</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Offcanvas -->
+<div class="offcanvas offcanvas-end offcanvas-tn" id="menuMovil" tabindex="-1">
+  <div class="offcanvas-header"><h5 class="offcanvas-title">TechNova Summit</h5><button class="btn-close" data-bs-dismiss="offcanvas"></button></div>
+  <div class="offcanvas-body p-0"><ul class="navbar-nav">
+    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+    <li class="nav-item"><a class="nav-link" href="agenda.html">Agenda</a></li>
+    <li class="nav-item"><a class="nav-link" href="ponentes.html">Ponentes</a></li>
+    <li class="nav-item"><a class="nav-link" href="entradas.html">Entradas</a></li>
+    <li class="nav-item"><a class="nav-link" href="inscripcion.html">Inscripción</a></li>
+    <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+  </ul></div>
+</div>
+
+<!-- ENCABEZADO -->
+<section class="py-5 seccion-oscura text-center">
+  <div class="container">
+    <h1 class="seccion-titulo text-white fw-bold">Nuestros <span>Ponentes</span></h1>
+    <p class="text-white-50">Expertos internacionales seleccionados para inspirarte</p>
+  </div>
+</section>
+
+<!-- FILTROS -->
+<section class="py-4 seccion-gris">
+  <div class="container">
+    <div class="d-flex flex-wrap gap-2 justify-content-center" id="filtros">
+      <button class="filtro-btn activo" data-filtro="todos">Todos</button>
+      <button class="filtro-btn" data-filtro="ia">Inteligencia Artificial</button>
+      <button class="filtro-btn" data-filtro="blockchain">Blockchain</button>
+      <button class="filtro-btn" data-filtro="seguridad">Ciberseguridad</button>
+      <button class="filtro-btn" data-filtro="cloud">Cloud & DevOps</button>
+    </div>
+  </div>
+</section>
+
+<!-- CATÁLOGO DE PONENTES -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4" id="gridPonentes">
+
+      <div class="col-6 col-md-4 col-lg-3 ponente-item" data-categoria="ia">
+        <div class="card card-ponente" data-bs-toggle="modal" data-bs-target="#modalPonente"
+             data-nombre="Dra. Laura Méndez" data-rol="Inteligencia Artificial"
+             data-empresa="MIT / OpenAI" data-bio="Doctora en Ciencias Computacionales del MIT. Investigadora principal en modelos de lenguaje y IA generativa. Autora de más de 50 artículos científicos."
+             data-linkedin="#" data-twitter="#">
+          <div style="height:180px;background:linear-gradient(135deg,#1a1a2e,#0f3460);display:flex;align-items:center;justify-content:center">
+            <i class="bi bi-person-circle text-white" style="font-size:4rem"></i>
+          </div>
+          <div class="card-body">
+            <span class="rol">Inteligencia Artificial</span>
+            <h6 class="fw-bold mt-1 mb-0">Dra. Laura Méndez</h6>
+            <p class="text-muted small">MIT / OpenAI</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 ponente-item" data-categoria="blockchain">
+        <div class="card card-ponente" data-bs-toggle="modal" data-bs-target="#modalPonente"
+             data-nombre="Carlos Vega" data-rol="Blockchain"
+             data-empresa="Ethereum Foundation" data-bio="Desarrollador core de Ethereum. Pionero en contratos inteligentes y DeFi. Speaker en más de 30 conferencias globales."
+             data-linkedin="#" data-twitter="#">
+          <div style="height:180px;background:linear-gradient(135deg,#0f3460,#e94560);display:flex;align-items:center;justify-content:center">
+            <i class="bi bi-person-circle text-white" style="font-size:4rem"></i>
+          </div>
+          <div class="card-body">
+            <span class="rol">Blockchain</span>
+            <h6 class="fw-bold mt-1 mb-0">Carlos Vega</h6>
+            <p class="text-muted small">Ethereum Foundation</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 ponente-item" data-categoria="seguridad">
+        <div class="card card-ponente" data-bs-toggle="modal" data-bs-target="#modalPonente"
+             data-nombre="Ana Torres" data-rol="Ciberseguridad"
+             data-empresa="Google Security" data-bio="Experta en seguridad ofensiva y defensiva. CISO en Google LATAM. Certificada en CISSP, CEH y OSCP."
+             data-linkedin="#" data-twitter="#">
+          <div style="height:180px;background:linear-gradient(135deg,#16213e,#1a1a2e);display:flex;align-items:center;justify-content:center">
+            <i class="bi bi-person-circle text-white" style="font-size:4rem"></i>
+          </div>
+          <div class="card-body">
+            <span class="rol">Ciberseguridad</span>
+            <h6 class="fw-bold mt-1 mb-0">Ana Torres</h6>
+            <p class="text-muted small">Google Security</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 ponente-item" data-categoria="cloud">
+        <div class="card card-ponente" data-bs-toggle="modal" data-bs-target="#modalPonente"
+             data-nombre="Luis Paredes" data-rol="Cloud & DevOps"
+             data-empresa="Amazon AWS" data-bio="Solutions Architect en AWS. Especialista en arquitecturas cloud nativas, Kubernetes y microservicios a escala."
+             data-linkedin="#" data-twitter="#">
+          <div style="height:180px;background:linear-gradient(135deg,#e94560,#0f3460);display:flex;align-items:center;justify-content:center">
+            <i class="bi bi-person-circle text-white" style="font-size:4rem"></i>
+          </div>
+          <div class="card-body">
+            <span class="rol">Cloud & DevOps</span>
+            <h6 class="fw-bold mt-1 mb-0">Luis Paredes</h6>
+            <p class="text-muted small">Amazon AWS</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 ponente-item" data-categoria="ia">
+        <div class="card card-ponente" data-bs-toggle="modal" data-bs-target="#modalPonente"
+             data-nombre="Dr. Ramón Silva" data-rol="Computación Cuántica"
+             data-empresa="IBM Research" data-bio="Investigador principal en computación cuántica en IBM. Lidera el proyecto Q-NEXT para aplicaciones cuánticas prácticas."
+             data-linkedin="#" data-twitter="#">
+          <div style="height:180px;background:linear-gradient(135deg,#0f3460,#16213e);display:flex;align-items:center;justify-content:center">
+            <i class="bi bi-person-circle text-white" style="font-size:4rem"></i>
+          </div>
+          <div class="card-body">
+            <span class="rol">Computación Cuántica</span>
+            <h6 class="fw-bold mt-1 mb-0">Dr. Ramón Silva</h6>
+            <p class="text-muted small">IBM Research</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 ponente-item" data-categoria="cloud">
+        <div class="card card-ponente" data-bs-toggle="modal" data-bs-target="#modalPonente"
+             data-nombre="Sofía Ríos" data-rol="Desarrollo Backend"
+             data-empresa="Microsoft" data-bio="Engineering Manager en Microsoft Azure. Experta en Node.js, APIs REST y arquitecturas escalables con millones de usuarios."
+             data-linkedin="#" data-twitter="#">
+          <div style="height:180px;background:linear-gradient(135deg,#1a1a2e,#e94560);display:flex;align-items:center;justify-content:center">
+            <i class="bi bi-person-circle text-white" style="font-size:4rem"></i>
+          </div>
+          <div class="card-body">
+            <span class="rol">Desarrollo Backend</span>
+            <h6 class="fw-bold mt-1 mb-0">Sofía Ríos</h6>
+            <p class="text-muted small">Microsoft</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 ponente-item" data-categoria="blockchain">
+        <div class="card card-ponente" data-bs-toggle="modal" data-bs-target="#modalPonente"
+             data-nombre="Diego Morales" data-rol="Web3 & NFT"
+             data-empresa="Polygon Labs" data-bio="Fundador de dos startups Web3. Experto en NFT, metaverso y economías digitales descentralizadas."
+             data-linkedin="#" data-twitter="#">
+          <div style="height:180px;background:linear-gradient(135deg,#e94560,#16213e);display:flex;align-items:center;justify-content:center">
+            <i class="bi bi-person-circle text-white" style="font-size:4rem"></i>
+          </div>
+          <div class="card-body">
+            <span class="rol">Web3 & NFT</span>
+            <h6 class="fw-bold mt-1 mb-0">Diego Morales</h6>
+            <p class="text-muted small">Polygon Labs</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 ponente-item" data-categoria="seguridad">
+        <div class="card card-ponente" data-bs-toggle="modal" data-bs-target="#modalPonente"
+             data-nombre="Valeria Cruz" data-rol="Privacidad de Datos"
+             data-empresa="Meta Privacy" data-bio="Abogada especialista en regulaciones de privacidad. Asesora en implementación de GDPR y marcos de protección de datos."
+             data-linkedin="#" data-twitter="#">
+          <div style="height:180px;background:linear-gradient(135deg,#0f3460,#e94560);display:flex;align-items:center;justify-content:center">
+            <i class="bi bi-person-circle text-white" style="font-size:4rem"></i>
+          </div>
+          <div class="card-body">
+            <span class="rol">Privacidad de Datos</span>
+            <h6 class="fw-bold mt-1 mb-0">Valeria Cruz</h6>
+            <p class="text-muted small">Meta Privacy</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MODAL DE PONENTE -->
+<div class="modal fade" id="modalPonente" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-4 overflow-hidden">
+      <div class="modal-header border-0 py-4" style="background:linear-gradient(135deg,#1a1a2e,#0f3460)">
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center">
+            <i class="bi bi-person-fill text-white fs-2"></i>
+          </div>
+          <div>
+            <h5 class="modal-title text-white fw-bold mb-0" id="modalNombre">Nombre</h5>
+            <span id="modalRol" style="color:#e94560;font-size:0.82rem;font-weight:600"></span><br>
+            <span id="modalEmpresa" class="text-white-50 small"></span>
+          </div>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p id="modalBio" class="text-muted"></p>
+        <div class="d-flex gap-2 mt-3">
+          <a id="modalLinkedin" href="#" class="btn btn-sm btn-outline-primary rounded-pill"><i class="bi bi-linkedin me-1"></i>LinkedIn</a>
+          <a id="modalTwitter" href="#" class="btn btn-sm btn-outline-dark rounded-pill"><i class="bi bi-twitter-x me-1"></i>Twitter</a>
+          <a href="agenda.html" class="btn btn-sm rounded-pill text-white" style="background:#e94560"><i class="bi bi-calendar me-1"></i>Ver sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer-tn">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-md-4"><div class="footer-marca mb-2">TechNova</div><p class="small">El congreso internacional de tecnología más importante de Latinoamérica.</p></div>
+      <div class="col-6 col-md-2"><h5>Evento</h5><ul class="list-unstyled small"><li><a href="agenda.html">Agenda</a></li><li><a href="ponentes.html">Ponentes</a></li><li><a href="entradas.html">Entradas</a></li></ul></div>
+      <div class="col-6 col-md-2"><h5>Info</h5><ul class="list-unstyled small"><li><a href="contacto.html">Contacto</a></li><li><a href="inscripcion.html">Inscripción</a></li></ul></div>
+      <div class="col-12 col-md-4"><h5>Redes</h5><div class="d-flex gap-3"><a href="#"><i class="bi bi-twitter-x fs-5"></i></a><a href="#"><i class="bi bi-linkedin fs-5"></i></a><a href="#"><i class="bi bi-instagram fs-5"></i></a></div></div>
+    </div>
+    <hr>
+    <p class="text-center small mb-0">© 2026 TechNova Summit. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Filtros de ponentes
+  const btnsFiltro = document.querySelectorAll('.filtro-btn');
+  const items = document.querySelectorAll('.ponente-item');
+  btnsFiltro.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btnsFiltro.forEach(b => b.classList.remove('activo'));
+      btn.classList.add('activo');
+      const filtro = btn.dataset.filtro;
+      items.forEach(item => {
+        item.style.display = (filtro === 'todos' || item.dataset.categoria === filtro) ? '' : 'none';
+      });
+    });
+  });
+
+  // Modal dinámico
+  const modalEl = document.getElementById('modalPonente');
+  modalEl.addEventListener('show.bs.modal', e => {
+    const card = e.relatedTarget;
+    document.getElementById('modalNombre').textContent  = card.dataset.nombre;
+    document.getElementById('modalRol').textContent     = card.dataset.rol;
+    document.getElementById('modalEmpresa').textContent = card.dataset.empresa;
+    document.getElementById('modalBio').textContent     = card.dataset.bio;
+    document.getElementById('modalLinkedin').href       = card.dataset.linkedin;
+    document.getElementById('modalTwitter').href        = card.dataset.twitter;
+  });
+</script>
+</body>
+</html>

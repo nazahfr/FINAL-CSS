@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicio — Salud 360</title>
+  <meta name="description" content="Salud 360: red de centros de salud con especialidades médicas, directorio de médicos y reserva de citas.">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav-salud z-depth-2">
+  <div class="nav-wrapper container">
+    <a href="index.html" class="brand-logo"><i class="material-icons left">local_hospital</i>Salud 360</a>
+    <a href="#" data-target="sidenavPrincipal" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li><a href="especialidades.html">Especialidades</a></li>
+      <li><a href="directorio.html">Médicos</a></li>
+      <li><a href="reserva.html">Reservar Cita</a></li>
+      <li><a href="mis-citas.html">Mis Citas</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- SIDENAV -->
+<ul class="sidenav" id="sidenavPrincipal">
+  <li>
+    <div class="sidenav-header">
+      <span class="sidenav-brand"><i class="material-icons left">local_hospital</i>Salud 360</span>
+    </div>
+  </li>
+  <li><a href="index.html"><i class="material-icons">home</i>Inicio</a></li>
+  <li><a href="especialidades.html"><i class="material-icons">medical_services</i>Especialidades</a></li>
+  <li><a href="directorio.html"><i class="material-icons">people</i>Médicos</a></li>
+  <li><a href="reserva.html"><i class="material-icons">event</i>Reservar Cita</a></li>
+  <li><a href="mis-citas.html"><i class="material-icons">assignment</i>Mis Citas</a></li>
+  <li><a href="contacto.html"><i class="material-icons">contact_mail</i>Contacto</a></li>
+</ul>
+
+<!-- HERO -->
+<section class="hero-salud">
+  <div class="container">
+    <div class="row valign-wrapper">
+      <div class="col s12 m7 anim">
+        <h1>Tu salud,<br>nuestra <span class="resaltado">prioridad</span></h1>
+        <p class="lead flow-text">Accede a las mejores especialidades médicas, reserva tu cita en minutos y cuida tu bienestar con Salud 360.</p>
+        <div class="mt-4" style="margin-top:24px">
+          <a href="reserva.html" class="btn-large btn-azul white-text waves-effect waves-light z-depth-2" style="border-radius:50px;margin-right:12px">
+            <i class="material-icons left">event</i>Reservar Cita
+          </a>
+          <a href="especialidades.html" class="btn-large btn-azul-outline waves-effect" style="border-radius:50px">
+            <i class="material-icons left">search</i>Especialidades
+          </a>
+        </div>
+      </div>
+      <div class="col s12 m5 center hide-on-small-only">
+        <div class="card z-depth-3" style="border-radius:20px;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px)">
+          <div class="card-content white-text">
+            <p class="flow-text mb-2"><i class="material-icons" style="color:var(--azul-palo)">verified</i> Acceso rápido</p>
+            <a href="reserva.html" class="btn-large btn-azul white-text waves-effect waves-light" style="border-radius:50px;width:100%;margin-bottom:12px">
+              <i class="material-icons left">event_available</i>Nueva Cita
+            </a>
+            <a href="mis-citas.html" class="btn waves-effect waves-light" style="border-radius:50px;width:100%;background:rgba(255,255,255,0.15)">
+              <i class="material-icons left">list</i>Ver mis citas
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTADÍSTICAS -->
+<section class="seccion-oscura py-4" style="padding:40px 0">
+  <div class="container">
+    <div class="row" style="margin-bottom:0">
+      <div class="col s6 m3"><div class="stat-salud"><span class="stat-num">50+</span><span class="stat-label">Médicos especialistas</span></div></div>
+      <div class="col s6 m3"><div class="stat-salud"><span class="stat-num">15</span><span class="stat-label">Especialidades</span></div></div>
+      <div class="col s6 m3"><div class="stat-salud"><span class="stat-num">3</span><span class="stat-label">Sedes en Lima</span></div></div>
+      <div class="col s6 m3"><div class="stat-salud"><span class="stat-num">20K+</span><span class="stat-label">Pacientes atendidos</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS Y ESPECIALIDADES -->
+<section class="seccion-gris" style="padding:60px 0">
+  <div class="container">
+    <h2 class="center" style="color:var(--oscuro);font-weight:800;margin-bottom:8px">Nuestras <span style="color:var(--azul)">Especialidades</span></h2>
+    <p class="center grey-text" style="margin-bottom:40px">Atención médica integral para toda la familia</p>
+    <div class="row">
+      <div class="col s12 m6 l4">
+        <div class="card card-salud card-especialidad z-depth-1 hoverable">
+          <div class="card-content">
+            <span class="card-title"><i class="material-icons" style="color:var(--azul)">favorite</i> Cardiología</span>
+            <p class="grey-text">Diagnóstico y tratamiento de enfermedades del corazón y sistema cardiovascular.</p>
+          </div>
+          <div class="card-action"><a href="especialidades.html" style="color:var(--azul)">Ver especialidad <i class="material-icons tiny">arrow_forward</i></a></div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="card card-salud card-especialidad z-depth-1 hoverable">
+          <div class="card-content">
+            <span class="card-title"><i class="material-icons" style="color:var(--azul)">psychology</i> Neurología</span>
+            <p class="grey-text">Atención especializada del sistema nervioso central y periférico.</p>
+          </div>
+          <div class="card-action"><a href="especialidades.html" style="color:var(--azul)">Ver especialidad <i class="material-icons tiny">arrow_forward</i></a></div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="card card-salud card-especialidad z-depth-1 hoverable">
+          <div class="card-content">
+            <span class="card-title"><i class="material-icons" style="color:var(--azul)">child_care</i> Pediatría</span>
+            <p class="grey-text">Cuidado integral de la salud de niños y adolescentes.</p>
+          </div>
+          <div class="card-action"><a href="especialidades.html" style="color:var(--azul)">Ver especialidad <i class="material-icons tiny">arrow_forward</i></a></div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="card card-salud card-especialidad z-depth-1 hoverable">
+          <div class="card-content">
+            <span class="card-title"><i class="material-icons" style="color:var(--azul)">healing</i> Traumatología</span>
+            <p class="grey-text">Diagnóstico y tratamiento del sistema musculoesquelético.</p>
+          </div>
+          <div class="card-action"><a href="especialidades.html" style="color:var(--azul)">Ver especialidad <i class="material-icons tiny">arrow_forward</i></a></div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="card card-salud card-especialidad z-depth-1 hoverable">
+          <div class="card-content">
+            <span class="card-title"><i class="material-icons" style="color:var(--azul)">visibility</i> Oftalmología</span>
+            <p class="grey-text">Salud visual completa: exámenes, cirugías y tratamientos.</p>
+          </div>
+          <div class="card-action"><a href="especialidades.html" style="color:var(--azul)">Ver especialidad <i class="material-icons tiny">arrow_forward</i></a></div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="card card-salud card-especialidad z-depth-1 hoverable">
+          <div class="card-content">
+            <span class="card-title"><i class="material-icons" style="color:var(--azul)">pregnant_woman</i> Ginecología</span>
+            <p class="grey-text">Salud integral de la mujer: ginecología, obstetricia y más.</p>
+          </div>
+          <div class="card-action"><a href="especialidades.html" style="color:var(--azul)">Ver especialidad <i class="material-icons tiny">arrow_forward</i></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="center">
+      <a href="especialidades.html" class="btn-large btn-azul white-text waves-effect waves-light" style="border-radius:50px">Ver todas las especialidades</a>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="seccion-azul" style="padding:60px 0">
+  <div class="container">
+    <h2 class="center white-text" style="font-weight:800;margin-bottom:40px">¿Por qué elegirnos?</h2>
+    <div class="row">
+      <div class="col s12 m6 l3 center">
+        <i class="material-icons" style="font-size:3rem;color:var(--azul-palo)">schedule</i>
+        <h6 class="white-text fw-bold">Citas en minutos</h6>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem">Reserva online las 24 horas sin esperas</p>
+      </div>
+      <div class="col s12 m6 l3 center">
+        <i class="material-icons" style="font-size:3rem;color:var(--azul-palo)">verified_user</i>
+        <h6 class="white-text fw-bold">Médicos certificados</h6>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem">Todos nuestros especialistas están certificados</p>
+      </div>
+      <div class="col s12 m6 l3 center">
+        <i class="material-icons" style="font-size:3rem;color:var(--azul-palo)">location_on</i>
+        <h6 class="white-text fw-bold">3 sedes en Lima</h6>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem">Miraflores, San Isidro y La Molina</p>
+      </div>
+      <div class="col s12 m6 l3 center">
+        <i class="material-icons" style="font-size:3rem;color:var(--azul-palo)">videocam</i>
+        <h6 class="white-text fw-bold">Teleconsulta</h6>
+        <p style="color:rgba(255,255,255,0.7);font-size:0.9rem">Consulta desde casa con video llamada</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESO RÁPIDO A RESERVA -->
+<section style="padding:60px 0;background:white">
+  <div class="container center">
+    <h2 style="color:var(--oscuro);font-weight:800;margin-bottom:12px">¿Necesitas una cita?</h2>
+    <p class="grey-text" style="margin-bottom:30px">Reserva en 3 simples pasos, sin llamadas ni esperas.</p>
+    <a href="reserva.html" class="btn-large btn-azul white-text waves-effect waves-light z-depth-2" style="border-radius:50px;font-size:1.1rem;padding:0 40px">
+      <i class="material-icons left">event_available</i>Reservar mi cita ahora
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-salud">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m4">
+        <h5 class="footer-titulo"><i class="material-icons left">local_hospital</i>Salud 360</h5>
+        <p>Red de centros de salud comprometida con tu bienestar y el de tu familia.</p>
+      </div>
+      <div class="col s6 m2">
+        <h6 class="footer-titulo">Servicios</h6>
+        <ul><li><a href="especialidades.html">Especialidades</a></li><li><a href="directorio.html">Médicos</a></li><li><a href="reserva.html">Citas</a></li></ul>
+      </div>
+      <div class="col s6 m2">
+        <h6 class="footer-titulo">Pacientes</h6>
+        <ul><li><a href="mis-citas.html">Mis Citas</a></li><li><a href="contacto.html">Contacto</a></li></ul>
+      </div>
+      <div class="col s12 m4">
+        <h6 class="footer-titulo">Contacto</h6>
+        <p><i class="material-icons tiny">phone</i> +51 (1) 234-5000<br>
+        <i class="material-icons tiny">email</i> info@salud360.pe<br>
+        <i class="material-icons tiny">location_on</i> Lima, Perú</p>
+      </div>
+    </div>
+    <div class="divider" style="background:rgba(255,255,255,0.1)"></div>
+    <p class="center" style="padding-top:16px;font-size:0.85rem">© 2026 Salud 360. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
+    M.toast({ html: '¡Bienvenido a Salud 360! Reserva tu cita hoy.', classes: 'rounded', displayLength: 3000 });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo — ReUse Market</title>
+  <meta name="description" content="Catálogo de productos reutilizados: tecnología, ropa, muebles, libros y más en ReUse Market.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { eco:{ DEFAULT:'#2d6a4f', light:'#40916c', dark:'#1b4332' }, verde:{ 50:'#f0fdf4', 100:'#dcfce7', 400:'#4ade80', 500:'#22c55e', 600:'#16a34a' } },
+        fontFamily: { sans: ['Inter','sans-serif'] }
+      }}
+    }
+  </script>
+  <style>
+    .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+    .badge-estado { padding:2px 10px;border-radius:50px;font-size:0.72rem;font-weight:700;text-transform:uppercase; }
+    .badge-nuevo { background:#dcfce7;color:#166534; }
+    .badge-usado { background:#fef9c3;color:#854d0e; }
+    .badge-reacondicionado { background:#dbeafe;color:#1e40af; }
+    .sidebar-movil { display:none; }
+    .sidebar-movil.abierto { display:block; }
+  </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+
+<!-- NAVBAR -->
+<nav class="bg-eco-dark text-white sticky top-0 z-50 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="index.html" class="text-xl font-bold flex items-center gap-2">ReUse Market</a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <a href="index.html" class="text-white/80 hover:text-verde-400 transition-colors">Inicio</a>
+      <a href="catalogo.html" class="text-verde-400">Catálogo</a>
+      <a href="vendedor.html" class="text-white/80 hover:text-verde-400 transition-colors">Vendedores</a>
+      <a href="carrito.html" class="text-white/80 hover:text-verde-400 transition-colors">Carrito</a>
+      <a href="publicar.html" class="bg-verde-600 hover:bg-verde-500 text-white px-4 py-2 rounded-full transition-colors font-semibold text-sm">+ Publicar</a>
+    </div>
+    <button class="md:hidden text-white" onclick="document.getElementById('menuMovil').classList.toggle('hidden')">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="menuMovil" class="hidden md:hidden bg-eco-dark border-t border-white/10 px-4 pb-4">
+    <div class="flex flex-col gap-3 pt-3 text-sm font-medium">
+      <a href="index.html" class="text-white/80">Inicio</a>
+      <a href="catalogo.html" class="text-verde-400">Catálogo</a>
+      <a href="vendedor.html" class="text-white/80">Vendedores</a>
+      <a href="carrito.html" class="text-white/80">Carrito</a>
+      <a href="publicar.html" class="bg-verde-600 text-white px-4 py-2 rounded-full text-center">+ Publicar</a>
+    </div>
+  </div>
+</nav>
+
+<!-- BARRA DE BÚSQUEDA -->
+<div class="bg-white border-b shadow-sm py-4">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex gap-3">
+      <div class="relative flex-1">
+        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="search" placeholder="Buscar productos..." class="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-eco focus:border-transparent bg-gray-50 text-sm">
+      </div>
+      <select class="border border-gray-200 rounded-full px-4 py-2.5 text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-eco">
+        <option>Más recientes</option>
+        <option>Precio: menor a mayor</option>
+        <option>Precio: mayor a menor</option>
+        <option>Mejor calificados</option>
+      </select>
+      <!-- Botón filtros móvil -->
+      <button onclick="document.getElementById('sidebarMovil').classList.toggle('abierto')" class="md:hidden bg-eco text-white px-4 py-2.5 rounded-full text-sm font-semibold">
+        Filtros
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <div class="flex gap-8">
+
+    <!-- SIDEBAR FILTROS (escritorio) -->
+    <aside class="hidden md:block w-64 flex-shrink-0">
+      <div class="bg-white rounded-3xl shadow-sm p-6 sticky top-20">
+        <h3 class="font-bold text-gray-900 mb-4">Filtros</h3>
+
+        <!-- Categoría -->
+        <div class="mb-6">
+          <h4 class="font-semibold text-sm text-gray-700 mb-3">Categoría</h4>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" checked class="accent-eco"> Tecnología</label>
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" class="accent-eco"> Ropa</label>
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" class="accent-eco"> Muebles</label>
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" class="accent-eco"> Libros</label>
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" class="accent-eco"> Juegos</label>
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" class="accent-eco"> Hogar</label>
+          </div>
+        </div>
+
+        <!-- Estado -->
+        <div class="mb-6">
+          <h4 class="font-semibold text-sm text-gray-700 mb-3">Estado</h4>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="radio" name="estado" checked class="accent-eco"> Todos</label>
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="radio" name="estado" class="accent-eco"> Nuevo</label>
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="radio" name="estado" class="accent-eco"> Usado</label>
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="radio" name="estado" class="accent-eco"> Reacondicionado</label>
+          </div>
+        </div>
+
+        <!-- Precio -->
+        <div class="mb-6">
+          <h4 class="font-semibold text-sm text-gray-700 mb-3">Precio (S/)</h4>
+          <div class="flex gap-2">
+            <input type="number" placeholder="Min" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-eco">
+            <input type="number" placeholder="Max" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-eco">
+          </div>
+        </div>
+
+        <!-- Calificación -->
+        <div class="mb-6">
+          <h4 class="font-semibold text-sm text-gray-700 mb-3">Calificación mínima</h4>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="radio" name="calif" class="accent-eco"> ⭐⭐⭐⭐⭐ (5)</label>
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="radio" name="calif" checked class="accent-eco"> ⭐⭐⭐⭐ (4+)</label>
+            <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="radio" name="calif" class="accent-eco"> ⭐⭐⭐ (3+)</label>
+          </div>
+        </div>
+
+        <button class="w-full bg-eco hover:bg-eco-dark text-white font-semibold py-2.5 rounded-full transition-colors duration-300">Aplicar filtros</button>
+        <button class="w-full mt-2 text-eco text-sm font-medium hover:underline">Limpiar todo</button>
+      </div>
+    </aside>
+
+    <!-- SIDEBAR MÓVIL (desplegable) -->
+    <div id="sidebarMovil" class="sidebar-movil md:hidden fixed inset-0 z-50 bg-black/50" onclick="this.classList.remove('abierto')">
+      <div class="absolute right-0 top-0 h-full w-72 bg-white p-6 overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="font-bold text-gray-900">Filtros</h3>
+          <button onclick="document.getElementById('sidebarMovil').classList.remove('abierto')" class="text-gray-400 text-xl">✕</button>
+        </div>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" checked class="accent-eco"> Tecnología</label>
+          <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" class="accent-eco"> Ropa</label>
+          <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" class="accent-eco"> Muebles</label>
+          <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" class="accent-eco"> Libros</label>
+        </div>
+        <button class="mt-6 w-full bg-eco text-white font-semibold py-2.5 rounded-full">Aplicar</button>
+      </div>
+    </div>
+
+    <!-- GRID DE PRODUCTOS -->
+    <div class="flex-1">
+      <div class="flex justify-between items-center mb-6">
+        <p class="text-gray-500 text-sm">Mostrando <strong class="text-gray-900">48</strong> productos</p>
+        <div class="flex gap-2">
+          <button class="p-2 bg-eco text-white rounded-lg" title="Vista cuadrícula">▦</button>
+          <button class="p-2 bg-gray-200 text-gray-600 rounded-lg hover:bg-eco hover:text-white transition-colors" title="Vista lista">☰</button>
+        </div>
+      </div>
+
+      <!-- Grid responsivo: 1 col → 2 col → 3 col → 4 col -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+        <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+          <div class="h-40 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
+            <span class="text-5xl">📱</span>
+            <span class="badge-estado badge-reacondicionado absolute top-2 left-2">Reacond.</span>
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-400">Tecnología</p>
+            <h3 class="font-semibold text-sm leading-tight mb-1">iPhone 13 128GB</h3>
+            <div class="flex justify-between items-center">
+              <span class="text-eco font-bold">S/ 1,200</span>
+              <span class="text-xs text-yellow-500">⭐ 4.9</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+          <div class="h-40 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center relative">
+            <span class="text-5xl">💻</span>
+            <span class="badge-estado badge-usado absolute top-2 left-2">Usado</span>
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-400">Tecnología</p>
+            <h3 class="font-semibold text-sm leading-tight mb-1">MacBook Air M1 8GB</h3>
+            <div class="flex justify-between items-center">
+              <span class="text-eco font-bold">S/ 3,500</span>
+              <span class="text-xs text-yellow-500">⭐ 4.8</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+          <div class="h-40 bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center relative">
+            <span class="text-5xl">🪑</span>
+            <span class="badge-estado badge-usado absolute top-2 left-2">Usado</span>
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-400">Muebles</p>
+            <h3 class="font-semibold text-sm leading-tight mb-1">Silla ergonómica</h3>
+            <div class="flex justify-between items-center">
+              <span class="text-eco font-bold">S/ 850</span>
+              <span class="text-xs text-yellow-500">⭐ 4.7</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+          <div class="h-40 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center relative">
+            <span class="text-5xl">📚</span>
+            <span class="badge-estado badge-nuevo absolute top-2 left-2">Nuevo</span>
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-400">Libros</p>
+            <h3 class="font-semibold text-sm leading-tight mb-1">Pack libros UX Design</h3>
+            <div class="flex justify-between items-center">
+              <span class="text-eco font-bold">S/ 120</span>
+              <span class="text-xs text-yellow-500">⭐ 5.0</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+          <div class="h-40 bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center relative">
+            <span class="text-5xl">🎮</span>
+            <span class="badge-estado badge-usado absolute top-2 left-2">Usado</span>
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-400">Juegos</p>
+            <h3 class="font-semibold text-sm leading-tight mb-1">PlayStation 5 + 2 controles</h3>
+            <div class="flex justify-between items-center">
+              <span class="text-eco font-bold">S/ 2,100</span>
+              <span class="text-xs text-yellow-500">⭐ 4.8</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+          <div class="h-40 bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center relative">
+            <span class="text-5xl">👗</span>
+            <span class="badge-estado badge-nuevo absolute top-2 left-2">Nuevo</span>
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-400">Ropa</p>
+            <h3 class="font-semibold text-sm leading-tight mb-1">Chaqueta de cuero talla M</h3>
+            <div class="flex justify-between items-center">
+              <span class="text-eco font-bold">S/ 280</span>
+              <span class="text-xs text-yellow-500">⭐ 4.6</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+          <div class="h-40 bg-gradient-to-br from-cyan-50 to-cyan-100 flex items-center justify-center relative">
+            <span class="text-5xl">📸</span>
+            <span class="badge-estado badge-reacondicionado absolute top-2 left-2">Reacond.</span>
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-400">Tecnología</p>
+            <h3 class="font-semibold text-sm leading-tight mb-1">Cámara Sony A7III</h3>
+            <div class="flex justify-between items-center">
+              <span class="text-eco font-bold">S/ 5,800</span>
+              <span class="text-xs text-yellow-500">⭐ 4.9</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="producto.html" class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover block">
+          <div class="h-40 bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center relative">
+            <span class="text-5xl">🏠</span>
+            <span class="badge-estado badge-usado absolute top-2 left-2">Usado</span>
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-400">Hogar</p>
+            <h3 class="font-semibold text-sm leading-tight mb-1">Mesa de comedor 6 personas</h3>
+            <div class="flex justify-between items-center">
+              <span class="text-eco font-bold">S/ 600</span>
+              <span class="text-xs text-yellow-500">⭐ 4.5</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- PAGINACIÓN -->
+      <div class="flex justify-center items-center gap-2 mt-10">
+        <button disabled class="px-3 py-2 rounded-lg bg-gray-200 text-gray-400 text-sm disabled:cursor-not-allowed">←</button>
+        <button class="px-3 py-2 rounded-lg bg-eco text-white text-sm font-semibold">1</button>
+        <button class="px-3 py-2 rounded-lg bg-white border text-gray-600 text-sm hover:bg-verde-50 transition-colors">2</button>
+        <button class="px-3 py-2 rounded-lg bg-white border text-gray-600 text-sm hover:bg-verde-50 transition-colors">3</button>
+        <span class="text-gray-400 text-sm">...</span>
+        <button class="px-3 py-2 rounded-lg bg-white border text-gray-600 text-sm hover:bg-verde-50 transition-colors">12</button>
+        <button class="px-3 py-2 rounded-lg bg-white border text-gray-600 text-sm hover:bg-eco hover:text-white transition-colors">→</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-eco-dark text-white py-8 mt-12">
+  <div class="max-w-7xl mx-auto px-4 text-center text-white/50 text-sm">
+    <div class="text-xl font-extrabold text-verde-400 mb-3">ReUse Market</div>
+  </div>
+</footer>
+
+</body>
+</html>

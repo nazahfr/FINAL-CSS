@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lugares Culturales — Ciudad Viva</title>
+  <meta name="description" content="Directorio de museos, teatros, galerías y espacios culturales de la ciudad.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/print.css" rel="stylesheet" media="print">
+  <style>
+    .tag-lugar {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: var(--radio-pill);
+      font-size: var(--tamaño-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .tag-museo   { background: #fef3c7; color: #92400e; }
+    .tag-teatro  { background: #fce7f3; color: #9d174d; }
+    .tag-galeria { background: #e0e7ff; color: #3730a3; }
+    .tag-parque  { background: #d1fae5; color: #065f46; }
+
+    .card-lugar {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      background: white;
+      border-radius: var(--radio-lg);
+      overflow: hidden;
+      box-shadow: var(--sombra-sm);
+      transition: transform var(--transicion-normal), box-shadow var(--transicion-normal);
+      margin-bottom: var(--espacio-4);
+    }
+    .card-lugar:hover { transform: translateY(-3px); box-shadow: var(--sombra-lg); }
+    .card-lugar__img {
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-lugar__body { padding: var(--espacio-5); }
+    .card-lugar__nombre { font-family: var(--fuente-titulo); font-size: var(--tamaño-xl); margin: var(--espacio-2) 0; }
+    .card-lugar__info   { font-size: var(--tamaño-sm); color: var(--color-muted); display: flex; flex-direction: column; gap: var(--espacio-1); margin-bottom: var(--espacio-3); }
+    .card-lugar__info span { display: flex; align-items: center; gap: var(--espacio-2); }
+
+    @media (max-width: 600px) {
+      .card-lugar { grid-template-columns: 1fr; }
+      .card-lugar__img { width: 100%; height: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav-cv">
+  <div class="nav-cv__inner">
+    <a href="index.html" class="nav-cv__logo"><i class="fa-solid fa-city" style="color:var(--color-secundario)"></i>Ciudad <span>Viva</span></a>
+    <ul class="nav-cv__menu">
+      <li><a href="index.html" class="nav-cv__enlace">Inicio</a></li>
+      <li><a href="agenda.html" class="nav-cv__enlace">Agenda</a></li>
+      <li><a href="lugares.html" class="nav-cv__enlace nav-cv__enlace--activo">Lugares</a></li>
+      <li><a href="galeria.html" class="nav-cv__enlace">Galería</a></li>
+      <li><a href="contacto.html" class="nav-cv__enlace">Contacto</a></li>
+      <li><a href="agenda.html" class="nav-cv__enlace nav-cv__btn">Ver Eventos</a></li>
+    </ul>
+    <button class="nav-cv__toggle" id="btnToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="nav-cv__movil" id="menuMovil">
+  <a href="index.html" class="nav-cv__enlace">Inicio</a>
+  <a href="agenda.html" class="nav-cv__enlace">Agenda</a>
+  <a href="lugares.html" class="nav-cv__enlace">Lugares</a>
+  <a href="galeria.html" class="nav-cv__enlace">Galería</a>
+  <a href="contacto.html" class="nav-cv__enlace">Contacto</a>
+</nav>
+
+<!-- ENCABEZADO -->
+<section class="seccion--oscura" style="padding:var(--espacio-12) 0">
+  <div class="contenedor">
+    <h1 class="titulo-seccion" style="color:white">Espacios <span>Culturales</span></h1>
+    <p class="subtitulo">Museos, teatros, galerías y parques culturales</p>
+  </div>
+</section>
+
+<!-- BÚSQUEDA Y FILTROS -->
+<div style="background:white;border-bottom:1px solid var(--color-borde);padding:var(--espacio-4) 0">
+  <div class="contenedor">
+    <div class="flex flex-wrap gap-4 items-center" style="align-items:center">
+      <div style="flex:1;min-width:200px;position:relative">
+        <i class="fa-solid fa-magnifying-glass" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--color-muted)"></i>
+        <input type="search" placeholder="Buscar lugar cultural..." id="buscador"
+          style="width:100%;padding:10px 14px 10px 42px;border:1.5px solid var(--color-borde);border-radius:var(--radio-pill);font-family:var(--fuente-cuerpo);font-size:var(--tamaño-sm);outline:none">
+      </div>
+      <div style="display:flex;gap:var(--espacio-2);flex-wrap:wrap">
+        <button class="filtro-btn activo" style="padding:var(--espacio-2) var(--espacio-4);border:2px solid var(--color-borde);border-radius:var(--radio-pill);background:white;cursor:pointer;font-weight:600;font-size:var(--tamaño-sm);color:var(--color-muted);transition:all 0.2s;font-family:var(--fuente-cuerpo)" onclick="filtrarLugares('todos',this)">Todos</button>
+        <button class="filtro-btn" style="padding:var(--espacio-2) var(--espacio-4);border:2px solid var(--color-borde);border-radius:var(--radio-pill);background:white;cursor:pointer;font-weight:600;font-size:var(--tamaño-sm);color:var(--color-muted);transition:all 0.2s;font-family:var(--fuente-cuerpo)" onclick="filtrarLugares('museo',this)"><i class="fa-solid fa-landmark"></i> Museos</button>
+        <button class="filtro-btn" style="padding:var(--espacio-2) var(--espacio-4);border:2px solid var(--color-borde);border-radius:var(--radio-pill);background:white;cursor:pointer;font-weight:600;font-size:var(--tamaño-sm);color:var(--color-muted);transition:all 0.2s;font-family:var(--fuente-cuerpo)" onclick="filtrarLugares('teatro',this)"><i class="fa-solid fa-masks-theater"></i> Teatros</button>
+        <button class="filtro-btn" style="padding:var(--espacio-2) var(--espacio-4);border:2px solid var(--color-borde);border-radius:var(--radio-pill);background:white;cursor:pointer;font-weight:600;font-size:var(--tamaño-sm);color:var(--color-muted);transition:all 0.2s;font-family:var(--fuente-cuerpo)" onclick="filtrarLugares('galeria',this)"><i class="fa-solid fa-palette"></i> Galerías</button>
+        <button class="filtro-btn" style="padding:var(--espacio-2) var(--espacio-4);border:2px solid var(--color-borde);border-radius:var(--radio-pill);background:white;cursor:pointer;font-weight:600;font-size:var(--tamaño-sm);color:var(--color-muted);transition:all 0.2s;font-family:var(--fuente-cuerpo)" onclick="filtrarLugares('parque',this)"><i class="fa-solid fa-tree"></i> Parques</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="seccion">
+  <div class="contenedor">
+    <p style="color:var(--color-muted);font-size:var(--tamaño-sm);margin-bottom:var(--espacio-6)">Mostrando <strong id="contador">6</strong> espacios culturales</p>
+
+    <div id="listaLugares">
+
+      <div class="card-lugar lugar-item" data-tipo="museo" data-nombre="museo municipal de arte">
+        <div class="card-lugar__img" style="background:linear-gradient(135deg,#92400e,#e67e22)">
+          <i class="fa-solid fa-landmark" style="font-size:3rem;color:rgba(255,255,255,0.5)"></i>
+        </div>
+        <div class="card-lugar__body">
+          <span class="tag-lugar tag-museo">Museo</span>
+          <h2 class="card-lugar__nombre">Museo Municipal de Arte</h2>
+          <div class="card-lugar__info">
+            <span><i class="fa-solid fa-location-dot" style="color:var(--color-primario)"></i> Av. Principal 400, Centro</span>
+            <span><i class="fa-regular fa-clock" style="color:var(--color-primario)"></i> Mar–Dom: 9am – 6pm</span>
+            <span><i class="fa-solid fa-ticket" style="color:var(--color-primario)"></i> Entrada: S/ 8 adultos · Niños gratis</span>
+          </div>
+          <p style="font-size:var(--tamaño-sm);color:var(--color-muted);margin-bottom:var(--espacio-3)">Colección permanente de arte peruano del siglo XIX al XXI. Exposiciones temporales mensuales.</p>
+          <a href="agenda.html" class="btn btn--primario" style="padding:var(--espacio-2) var(--espacio-4);font-size:var(--tamaño-sm)"><i class="fa-regular fa-calendar"></i> Ver eventos en este lugar</a>
+        </div>
+      </div>
+
+      <div class="card-lugar lugar-item" data-tipo="teatro" data-nombre="teatro nacional">
+        <div class="card-lugar__img" style="background:linear-gradient(135deg,#9d174d,#c0392b)">
+          <i class="fa-solid fa-masks-theater" style="font-size:3rem;color:rgba(255,255,255,0.5)"></i>
+        </div>
+        <div class="card-lugar__body">
+          <span class="tag-lugar tag-teatro">Teatro</span>
+          <h2 class="card-lugar__nombre">Teatro Nacional</h2>
+          <div class="card-lugar__info">
+            <span><i class="fa-solid fa-location-dot" style="color:var(--color-primario)"></i> Av. Cultural 120, Lima Centro</span>
+            <span><i class="fa-regular fa-clock" style="color:var(--color-primario)"></i> Según programación</span>
+            <span><i class="fa-solid fa-users" style="color:var(--color-primario)"></i> Capacidad: 800 personas</span>
+          </div>
+          <p style="font-size:var(--tamaño-sm);color:var(--color-muted);margin-bottom:var(--espacio-3)">Principal escenario de las artes escénicas. Sede de la Compañía Nacional de Teatro y la Orquesta Sinfónica.</p>
+          <a href="agenda.html" class="btn btn--primario" style="padding:var(--espacio-2) var(--espacio-4);font-size:var(--tamaño-sm)"><i class="fa-regular fa-calendar"></i> Ver eventos en este lugar</a>
+        </div>
+      </div>
+
+      <div class="card-lugar lugar-item" data-tipo="galeria" data-nombre="galeria central">
+        <div class="card-lugar__img" style="background:linear-gradient(135deg,#3730a3,#2c3e50)">
+          <i class="fa-solid fa-palette" style="font-size:3rem;color:rgba(255,255,255,0.5)"></i>
+        </div>
+        <div class="card-lugar__body">
+          <span class="tag-lugar tag-galeria">Galería</span>
+          <h2 class="card-lugar__nombre">Galería Central de Arte Contemporáneo</h2>
+          <div class="card-lugar__info">
+            <span><i class="fa-solid fa-location-dot" style="color:var(--color-primario)"></i> Calle Las Artes 55, Miraflores</span>
+            <span><i class="fa-regular fa-clock" style="color:var(--color-primario)"></i> Lun–Sáb: 10am – 8pm</span>
+            <span><i class="fa-solid fa-ticket" style="color:var(--color-primario)"></i> Entrada libre</span>
+          </div>
+          <p style="font-size:var(--tamaño-sm);color:var(--color-muted);margin-bottom:var(--espacio-3)">Espacio dedicado al arte contemporáneo emergente. Rotación mensual de artistas locales e internacionales.</p>
+          <a href="agenda.html" class="btn btn--primario" style="padding:var(--espacio-2) var(--espacio-4);font-size:var(--tamaño-sm)"><i class="fa-regular fa-calendar"></i> Ver eventos en este lugar</a>
+        </div>
+      </div>
+
+      <div class="card-lugar lugar-item" data-tipo="parque" data-nombre="parque cultural sur">
+        <div class="card-lugar__img" style="background:linear-gradient(135deg,#065f46,#1e8449)">
+          <i class="fa-solid fa-tree" style="font-size:3rem;color:rgba(255,255,255,0.5)"></i>
+        </div>
+        <div class="card-lugar__body">
+          <span class="tag-lugar tag-parque">Parque Cultural</span>
+          <h2 class="card-lugar__nombre">Parque Cultural Sur</h2>
+          <div class="card-lugar__info">
+            <span><i class="fa-solid fa-location-dot" style="color:var(--color-primario)"></i> Av. Benavides 2100, Surco</span>
+            <span><i class="fa-regular fa-clock" style="color:var(--color-primario)"></i> Todos los días: 6am – 10pm</span>
+            <span><i class="fa-solid fa-ticket" style="color:var(--color-primario)"></i> Entrada libre</span>
+          </div>
+          <p style="font-size:var(--tamaño-sm);color:var(--color-muted);margin-bottom:var(--espacio-3)">Anfiteatro al aire libre, escenario de conciertos, cine y festivales al aire libre. Capacidad para 5,000 personas.</p>
+          <a href="agenda.html" class="btn btn--primario" style="padding:var(--espacio-2) var(--espacio-4);font-size:var(--tamaño-sm)"><i class="fa-regular fa-calendar"></i> Ver eventos en este lugar</a>
+        </div>
+      </div>
+
+      <div class="card-lugar lugar-item" data-tipo="museo" data-nombre="casa de la cultura">
+        <div class="card-lugar__img" style="background:linear-gradient(135deg,#2c3e50,#34495e)">
+          <i class="fa-solid fa-building-columns" style="font-size:3rem;color:rgba(255,255,255,0.5)"></i>
+        </div>
+        <div class="card-lugar__body">
+          <span class="tag-lugar tag-museo">Centro Cultural</span>
+          <h2 class="card-lugar__nombre">Casa de la Cultura</h2>
+          <div class="card-lugar__info">
+            <span><i class="fa-solid fa-location-dot" style="color:var(--color-primario)"></i> Jr. Ancash 590, Cercado</span>
+            <span><i class="fa-regular fa-clock" style="color:var(--color-primario)"></i> Lun–Vie: 9am – 7pm</span>
+            <span><i class="fa-solid fa-ticket" style="color:var(--color-primario)"></i> Acceso libre a talleres municipales</span>
+          </div>
+          <p style="font-size:var(--tamaño-sm);color:var(--color-muted);margin-bottom:var(--espacio-3)">Sede principal de los talleres culturales municipales. Talleres de danza, pintura, cerámica y música.</p>
+          <a href="agenda.html" class="btn btn--primario" style="padding:var(--espacio-2) var(--espacio-4);font-size:var(--tamaño-sm)"><i class="fa-regular fa-calendar"></i> Ver eventos en este lugar</a>
+        </div>
+      </div>
+
+      <div class="card-lugar lugar-item" data-tipo="teatro" data-nombre="gran teatro municipal">
+        <div class="card-lugar__img" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">
+          <i class="fa-solid fa-star" style="font-size:3rem;color:rgba(255,255,255,0.5)"></i>
+        </div>
+        <div class="card-lugar__body">
+          <span class="tag-lugar tag-teatro">Gran Teatro</span>
+          <h2 class="card-lugar__nombre">Gran Teatro Municipal de Lima</h2>
+          <div class="card-lugar__info">
+            <span><i class="fa-solid fa-location-dot" style="color:var(--color-primario)"></i> Jr. Ica 377, Lima Centro</span>
+            <span><i class="fa-regular fa-clock" style="color:var(--color-primario)"></i> Según programación</span>
+            <span><i class="fa-solid fa-users" style="color:var(--color-primario)"></i> Capacidad: 1,200 personas</span>
+          </div>
+          <p style="font-size:var(--tamaño-sm);color:var(--color-muted);margin-bottom:var(--espacio-3)">El más importante escenario de Lima. Sede de ópera, ballet, teatro y grandes conciertos internacionales.</p>
+          <a href="agenda.html" class="btn btn--primario" style="padding:var(--espacio-2) var(--espacio-4);font-size:var(--tamaño-sm)"><i class="fa-regular fa-calendar"></i> Ver eventos en este lugar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-cv">
+  <div class="contenedor">
+    <div class="footer-cv__grid">
+      <div><div class="footer-cv__marca"><i class="fa-solid fa-city" style="color:var(--color-secundario)"></i> Ciudad Viva</div><p style="font-size:var(--tamaño-sm)">Portal cultural de la municipalidad.</p></div>
+      <div><h5>Explorar</h5><a href="agenda.html">Agenda</a><a href="lugares.html">Lugares</a><a href="galeria.html">Galería</a></div>
+      <div><h5>Participar</h5><a href="contacto.html">Convocar</a><a href="contacto.html">Boletín</a></div>
+      <div><h5>Municipal</h5><a href="#">Portal</a><a href="#">Privacidad</a></div>
+    </div>
+    <hr class="footer-cv__linea">
+    <p class="footer-cv__copy">© 2026 Ciudad Viva — Portal Cultural Municipal.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('btnToggle').addEventListener('click', () => {
+    document.getElementById('menuMovil').classList.toggle('abierto');
+  });
+
+  function filtrarLugares(tipo, btn) {
+    document.querySelectorAll('.filtro-btn').forEach(b => {
+      b.style.background = 'white';
+      b.style.borderColor = 'var(--color-borde)';
+      b.style.color = 'var(--color-muted)';
+    });
+    btn.style.background = 'var(--color-primario)';
+    btn.style.borderColor = 'var(--color-primario)';
+    btn.style.color = 'white';
+
+    let visible = 0;
+    document.querySelectorAll('.lugar-item').forEach(item => {
+      const mostrar = tipo === 'todos' || item.dataset.tipo === tipo;
+      item.style.display = mostrar ? '' : 'none';
+      if (mostrar) visible++;
+    });
+    document.getElementById('contador').textContent = visible;
+  }
+
+  document.getElementById('buscador').addEventListener('input', function() {
+    const q = this.value.toLowerCase();
+    let visible = 0;
+    document.querySelectorAll('.lugar-item').forEach(item => {
+      const mostrar = item.dataset.nombre.includes(q) || item.textContent.toLowerCase().includes(q);
+      item.style.display = mostrar ? '' : 'none';
+      if (mostrar) visible++;
+    });
+    document.getElementById('contador').textContent = visible;
+  });
+</script>
+</body>
+</html>
